@@ -1,0 +1,379 @@
+<template>
+  <footer class="site-footer">
+    <!-- Corner SVGs -->
+    <FooterCorner class="corner corner-tl" :rotation="0" />
+    <FooterCorner class="corner corner-tr" :rotation="90" />
+    <FooterCorner class="corner corner-bl" :rotation="270" />
+    <FooterCorner class="corner corner-br" :rotation="180" />
+    
+    <!-- Main Footer Content -->
+    <div class="footer-content">
+      <!-- Top Row -->
+      <div class="footer-top">
+        <!-- Left Column -->
+        <div class="footer-left">
+          <div class="logo-section">
+            <h2 class="logo-name">LM DOUGLAS</h2>
+            <h3 class="logo-subtitle">Chronicles of the Endless War</h3>
+            <p class="author-description">
+              L.M. Douglas is a Scottish author based in Edinburgh. She's been crafting stories in her head since childhood. It just took a few decades of real life before she could put them on the page.
+            </p>
+          </div>
+        </div>
+        
+        <!-- Right Column -->
+        <div class="footer-right">
+          <div class="right-columns">
+            <!-- Navigation Column -->
+            <div class="nav-column">
+              <h4 class="section-title">Navigation</h4>
+              <ul class="nav-links">
+                <li><router-link to="/">HOME</router-link></li>
+                <li><router-link to="/about">ABOUT</router-link></li>
+                <li><router-link to="/map">MAP</router-link></li>
+                <li><router-link to="/blog">BLOG</router-link></li>
+              </ul>
+            </div>
+            
+            <!-- Contact Column -->
+            <div class="contact-column">
+              <h4 class="section-title">Contact</h4>
+              <a href="mailto:info@lmdouglas.com" class="contact-email">info@lmdouglas.com</a>
+              
+              <div class="social-links">
+                <FooterInstagram href="https://instagram.com/lmdouglas" />
+                <FacebookIcon href="https://facebook.com/lmdouglas" /> 
+                <ThreadsIcon href="https://threads.net/@lmdouglas" />
+                <FooterTikTok href="https://tiktok.com/@lmdouglas" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Bottom Row (Copyright) -->
+      <div class="footer-bottom">
+        <p class="copyright">
+          &copy; LM DOUGLAS {{ currentYear }} - Website 
+          <a 
+            href="https://victorblanco.com" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="portfolio-link"
+          >
+            Victor Blanco
+          </a>
+        </p>
+      </div>
+    </div>
+  </footer>
+</template>
+
+<script>
+import FooterCorner from '../svgs/CornerDesign.vue'
+import FacebookIcon from '../svgs/FacebookIcon.vue'
+import FooterTikTok from '../svgs/FooterTikTok.vue'
+import FooterInstagram from '../svgs/InstagramIcon.vue'
+import ThreadsIcon from '../svgs/ThreadsIcon.vue'
+
+export default {
+  name: 'SiteFooter',
+  components: {
+    FooterCorner,
+    FooterInstagram,
+    ThreadsIcon,
+    FacebookIcon,  
+    FooterTikTok
+  },
+  computed: {
+    currentYear() {
+      return new Date().getFullYear()
+    }
+  }
+}
+</script>
+
+<style scoped>
+.site-footer {
+  background-color: #000;
+  color: #fff;
+  position: relative;
+  min-height: 400px;
+  padding: 60px 0 20px;
+  border-top: 2px solid #D4AF37;
+}
+
+/* Corner SVG Styles */
+.corner {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+}
+
+.corner-tl {
+  top: 12px;
+  left: 12px;
+}
+
+.corner-tr {
+  top: 12px;
+  right: 12px;
+  transform: rotate(90deg);
+}
+
+.corner-bl {
+  bottom: 12px;
+  left: 12px;
+  transform: rotate(270deg);
+}
+
+.corner-br {
+  bottom: 12px;
+  right: 12px;
+  transform: rotate(180deg);
+}
+
+/* Footer Content */
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 350px;
+}
+
+/* Top Row */
+.footer-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 120px;
+  margin: 3rem 0;
+  flex: 1;
+}
+
+/* Left Column */
+.footer-left {
+  flex: 1;
+  min-width: 300px;
+  max-width: 500px;
+  display: flex;
+  justify-content: center;  
+  align-items: center;
+}
+
+.logo-section {
+  text-align: left;  
+  width: 100%;
+}
+
+.logo-name {
+  color: #fff;
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  text-align: left;  
+}
+
+.logo-subtitle {
+  color: #D4AF37;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+  text-align: left;  
+}
+
+.author-description {
+  color: #fff;
+  text-align: left;  
+  line-height: 1.6;
+  font-size: 1.1rem;
+  max-width: 450px;
+  margin: 0;  
+  font-weight: 500;
+}
+
+/* Right Column */
+.footer-right {
+  flex: 1;
+  min-width: 300px;
+  max-width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.right-columns {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.nav-column,
+.contact-column {
+  flex: 1;
+  min-width: 150px;
+  max-width: 200px;
+}
+
+.section-title {
+  color: #D4AF37;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.nav-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.nav-links li {
+  margin-bottom: 12px;
+  line-height: 1.4;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.nav-links a:hover {
+  color: #D4AF37;
+}
+
+.contact-email {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  margin-bottom: 25px;
+  transition: color 0.3s ease;
+  line-height: 1.4;
+  font-weight: 500;
+  text-align: center;
+}
+
+.contact-email:hover {
+  color: #D4AF37;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  align-items: center;
+}
+
+/* Bottom Row */
+.footer-bottom {
+  padding-top: 2rem;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: auto;
+}
+
+.copyright {
+  color: #D4AF37;
+  font-size: 1rem;
+  margin: 0;
+  font-weight: 600;
+}
+
+.portfolio-link {
+  color: #D4AF37;
+  margin-left: 5px;
+  transition: opacity 0.3s ease;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.portfolio-link:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .footer-top {
+    gap: 40px;
+  }
+  
+  .right-columns {
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-top {
+    flex-direction: column;
+    gap: 40px;
+  }
+  
+  .footer-left,
+  .footer-right {
+    max-width: 100%;
+  }
+  
+  .right-columns {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+  
+  .nav-column,
+  .contact-column {
+    text-align: center;
+    max-width: 100%;
+  }
+  
+  .logo-name {
+    font-size: 2rem;
+  }
+  
+  .logo-subtitle {
+    font-size: 1rem;
+  }
+  
+  .author-description {
+    font-size: 0.95rem;
+  }
+  
+  .corner {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .corner-tl,
+  .corner-tr,
+  .corner-bl,
+  .corner-br {
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+  }
+}
+</style>
