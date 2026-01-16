@@ -8,9 +8,9 @@ export const heroSlides = [
     description: "The epic fantasy debut from LM Douglas. \nAncient powers are rising. Forgotten oaths will be answered.",
     ctaText: "Buy it now",
     ctaLink: "#",
-    bgImage: "@/assets/images/book1-bg.jpg",
+    bgImage: "/images/book1-bg.jpg",
     overlayColor: "rgba(21, 21, 21, 0)",
-    bookCover: "@/assets/images/book1-cover.png",
+    bookCover: "/images/book1-cover.png",
     textColor: "white",
     alignment: "left"
   },
@@ -22,9 +22,9 @@ export const heroSlides = [
     description: "The battle continues in this thrilling sequel. \nNew alliances form as darkness spreads across the realm.",
     ctaText: "Buy it now",
     ctaLink: "#",
-    bgImage: "@/assets/images/book2-bg.jpg",
+    bgImage: "/images/book2-bg.jpg",
     overlayColor: "rgba(21, 21, 21, 0.01)",
-    bookCover: "@/assets/images/book2-cover.png",
+    bookCover: "/images/book2-cover.png",
     textColor: "white",
     alignment: "right"
   },
@@ -36,9 +36,9 @@ export const heroSlides = [
     description: "The final chapter approaches. Will the guardians prevail or will darkness consume the world forever?",
     ctaText: "Coming Soon →",
     ctaLink: "#",
-    bgImage: "/@/assets/imgs/hero-bg-3.jpg",
+    bgImage: "//imgs/hero-bg-3.jpg",
     overlayColor: "rgba(21, 21, 21, 0.8)",
-    bookCover: "@/assets/images/book4-cover.png",
+    bookCover: "/images/book4-cover.png",
     textColor: "white",
     alignment: "left"
   }
@@ -48,7 +48,7 @@ export const chroniclesBooks = [
  {
     id: 1,
     title: "GHARANTIA'S GUARDIAN \n Book 1",
-    flatCover: "@/assets/images/book1-flat.jpg",
+    flatCover: "/images/book1-flat.jpg",
     status: "available", 
     ctaText: "Buy it now",
     ctaLink: "#"
@@ -56,7 +56,7 @@ export const chroniclesBooks = [
   {
     id: 2,
     title: "GHARANTIA'S SHADOW \n Novella 1",
-    flatCover: "@/assets/images/book3-cover.png",
+    flatCover: "/images/book3-cover.png",
     status: "get-it-free", 
     ctaText: "Get it free",
     ctaLink: "#newsletter"
@@ -64,7 +64,7 @@ export const chroniclesBooks = [
   {
     id: 3,
     title: "GHARANTIA'S FURY \n Book 2",
-    flatCover: "@/assets/images/book2-flat.jpg",
+    flatCover: "/images/book2-flat.jpg",
     status: "available", 
     ctaText: "Buy it now",
     ctaLink: "#"
@@ -72,7 +72,7 @@ export const chroniclesBooks = [
   {
     id: 4,
     title: "EMPIRE OF SHADOWS \n Book 3",
-    flatCover: "@/assets/images/book4-cover.png",
+    flatCover: "/images/book4-cover.png",
     status: "coming-soon",
     ctaText: "Coming soon",
     ctaLink: "#"
@@ -81,7 +81,7 @@ export const chroniclesBooks = [
   //   id: 4,
   //   title: "EMPIRE OF SHADOWS",
   //   subtitle: "Chronicles of the Endless War - Book 4",
-  //   flatCover: "/@/assets/imgs/book4-flat.jpg",
+  //   flatCover: "//imgs/book4-flat.jpg",
   //   status: "pre-order", 
   //   ctaText: "Pre-order Now",
   //   ctaLink: "#"
@@ -101,7 +101,7 @@ export const mapPoints = [
     id: 2,
     title: "Whispering Woods",
     description: "A mystical forest where trees speak secrets of ancient magic. Many have entered, but few return unchanged.",
-    image: "@/assets/images/locations/woods.jpg",
+    image: "/images/locations/woods.jpg",
     position: { top: '45%', left: '25%' },
     type: "forest"
   },
@@ -117,7 +117,7 @@ export const mapPoints = [
     id: 4,
     title: "Silverfall River",
     description: "A river whose waters shimmer like liquid silver. Said to heal wounds and grant visions of the future.",
-    image: "@/assets/images/Davga_HR.jpg",
+    image: "/images/Davga_HR.jpg",
     position: { top: '55%', left: '50%' },
     type: "river"
   },
@@ -125,7 +125,7 @@ export const mapPoints = [
     id: 5,
     title: "Shadowfen Bog",
     description: "A treacherous swamp where darkness gathers. The Marsh Wraiths guard ancient secrets in its murky depths.",
-    image: "@/assets/images/locations/bog.jpg",
+    image: "/images/locations/bog.jpg",
     position: { top: '70%', left: '30%' },
     type: "swamp"
   },
@@ -149,7 +149,7 @@ export const mapPoints = [
     id: 8,
     title: "Moonveil Lake",
     description: "A lake that reflects the moon even during daylight. The waters are said to be a gateway to the spirit realm.",
-    image: "@/assets/images/Pallemina_HR.jpg",
+    image: "/images/Pallemina_HR.jpg",
     position: { top: '65%', left: '65%' },
     type: "lake"
   },
@@ -157,7 +157,7 @@ export const mapPoints = [
     id: 9,
     title: "Ironroot Depths",
     description: "Underground caverns with trees of living iron. Dwarven clans mine the rare metal for their legendary weapons.",
-    image: "@/assets/images/Pallemina_HR.jpg",
+    image: "/images/Pallemina_HR.jpg",
     position: { top: '75%', left: '55%' },
     type: "caverns"
   },
@@ -165,7 +165,7 @@ export const mapPoints = [
     id: 10,
     title: "Celestial Spire",
     description: "A tower that reaches into the clouds, built by star-touched mages to study the constellations and their magic.",
-    image: "@/assets/images/Davga_HR.jpg",
+    image: "/images/Davga_HR.jpg",
     position: { top: '75%', left: '15%' },
     type: "tower"
   }
