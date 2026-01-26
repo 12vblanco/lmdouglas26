@@ -1,14 +1,55 @@
 // src/components/navigation/navigation.js
+
 export const navItems = [
-  { id: 'home', label: 'HOME', path: '#home'},
-  { id: 'about', label: 'ABOUT', path: '#about'},
-  { id: 'map', label: 'MAP', path: '#map'},
-  { id: 'blog', label: 'BLOG', path: '#blog'}
-]
+  {
+    id: 'home',
+    label: 'Home',
+    href: '#home',
+    isRoute: false
+  },
+  {
+    id: 'books',
+    label: 'Books',
+    href: '#books',
+    isRoute: false
+  },
+  {
+    id: 'map',
+    label: 'Map',
+    href: '#map',
+    isRoute: false
+  },
+  {
+    id: 'blog',
+    label: 'Blog',
+    href: '/blog',
+    isRoute: true
+  },
+  {
+    id: 'about',
+    label: 'About',
+    href: '/about',
+    isRoute: true
+  }
+];
 
 export const socialLinks = [
-  { id: 'twitter', label: 'Twitter', path: 'https://twitter.com' },
-  { id: 'instagram', label: 'Instagram', path: 'https://instagram.com' },
-  { id: 'facebook', label: 'Facebook', path: 'https://facebook.com' },
-  { id: 'amazon', label: 'Amazon', path: 'https://amazon.com' }
-]
+  {
+    id: 'facebook',
+    label: 'Facebook',
+    icon: 'facebook',
+    url: 'https://facebook.com/lmdouglasauthor'
+  },
+  {
+    id: 'twitter',
+    label: 'Twitter',
+    icon: 'twitter',
+    url: 'https://twitter.com/lmdouglasauthor'
+  },
+  {
+    id: 'instagram',
+    label: 'Instagram',
+    icon: 'instagram',
+    url: 'https://instagram.com/lmdouglasauthor'
+  }
+];

@@ -72,7 +72,7 @@
         
         <!-- Map Title/Description -->
         <div class="map-overlay">
-          <h2 class="map-title">The Gharantia Realm</h2>
+          <h2 class="map-title" >The Gharantia Realm</h2>
           <p class="map-description">
             Explore the realms, kingdoms, and battlefields of Gharantia.
           </p>

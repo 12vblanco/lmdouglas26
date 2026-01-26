@@ -57,19 +57,39 @@ const handleScroll = () => {
   isScrolled.value = window.scrollY > 50
 }
 
-// Handle navigation click
 const handleNavClick = (itemId) => {
   activeItem.value = itemId
-  console.log(`Navigating to: ${itemId}`)
+  console.log('Clicked:', itemId) // Debug
   
- // Scroll to section
-const element = document.getElementById(itemId)
-if (element) {
-  const offsetTop = element.offsetTop + 240 // Adjust 100 to your desired offset
-  window.scrollTo({ top: offsetTop, behavior: 'smooth' })
-}
+  const navItem = navItems.find(item => item.id === itemId)
+  console.log('Nav item:', navItem) // Debug
   
-  // Close mobile menu if open
+  if (navItem && navItem.isRoute) {
+    // Navigate to route
+    window.location.href = navItem.href
+  } else {
+    // Scroll to section
+    const element = document.getElementById(itemId)
+    console.log('Element found:', element) // Debug
+    
+    if (element) {
+      const navbarHeight = 90
+      let offsetTop
+      
+      // Special offset for map and books
+      if (itemId === 'map') {
+        offsetTop = element.offsetTop - navbarHeight + 240
+      } else if (itemId === 'books') {
+        offsetTop = element.offsetTop - navbarHeight + 780
+      } else {
+        offsetTop = element.offsetTop - navbarHeight - 20
+      }
+      
+      console.log('Scrolling to:', offsetTop) // Debug
+      window.scrollTo({ top: offsetTop, behavior: 'smooth' })
+    }
+  }
+  
   if (isMobileOpen.value) {
     closeMobileMenu()
   }

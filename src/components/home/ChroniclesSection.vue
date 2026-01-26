@@ -1,7 +1,7 @@
 <!-- src/components/home/ChroniclesSection.vue -->
 <template>
   <section class="chronicles-section">
-    <div class="container">
+    <div class="container" id="books">
       <!-- Section Header -->
       <div class="section-header">
         <h2 class="section-title">
@@ -10,7 +10,7 @@
       </div>
 
       <!-- Books Grid -->
-      <div class="books-grid">
+      <div class="books-grid" >
         <div 
           v-for="book in books" 
           :key="book.id" 
@@ -18,7 +18,7 @@
           :class="book.status"
         >
           <!-- Book Cover Image -->
-          <div class="book-cover-container">
+          <div class="book-cover-container" >
             <img 
               :src="book.flatCover" 
               :alt="book.title"

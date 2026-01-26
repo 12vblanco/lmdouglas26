@@ -48,15 +48,20 @@ const toggleMenu = () => {
 
 .burger-line {
   display: block;
-  width: 24px;
-  height: 2px;
-  background: var(--color-white);
+  width: 30px;
+  height: 3px;
+  background: var(--black);
   transition: all 0.3s ease;
-  border-radius: 1px;
+  border-radius: 2px;
+}
+
+/* When burger is open, lines turn to X */
+.burger-open .burger-line {
+  background: var(--white);
 }
 
 .burger-line-1 {
-  transform: rotate(45deg) translate(6px, 6px);
+  transform: rotate(45deg) translate(7px, 7px);
 }
 
 .burger-line-2 {
@@ -64,7 +69,7 @@ const toggleMenu = () => {
 }
 
 .burger-line-3 {
-  transform: rotate(-45deg) translate(6px, -6px);
+  transform: rotate(-45deg) translate(7px, -7px);
 }
 
 /* Responsive */

@@ -181,15 +181,15 @@ onUnmounted(() => {
     opacity: 1;
   }
   50% {
-    border-top-width: 15px;
-    opacity: 0.85;
+    border-top-width: 32px;
+    opacity: 0.95;
   }
 }
 
 @keyframes sand-flow-bottom {
   0%, 100% {
-    border-bottom-width: 15px;
-    opacity: 0.85;
+    border-bottom-width: 32px;
+    opacity: 0.95;
   }
   50% {
     border-bottom-width: 35px;

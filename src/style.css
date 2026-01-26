@@ -21,6 +21,8 @@
 /* CSS Reset & Global Styles */
 *, *::before, *::after {
   box-sizing: border-box;
+    user-select: none;
+  -webkit-user-select: none;
   margin: 0;
   padding: 0;
 }
@@ -71,6 +73,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+}
+
+img {
+  -webkit-user-drag: none;
+  pointer-events: auto; /* Keep this if you need click events on images */
 }
 
 /* Typography Scale */
