@@ -3,7 +3,7 @@
   <div 
     class="hero-slide" 
     :style="{ backgroundImage: slideLoaded ? `url(${slide.bgImage})` : 'none' }"
-    :class="[`text-${slide.alignment}`, { 'loaded': slideLoaded }]"
+    :class="[`alignment-${slide.alignment}`, { 'loaded': slideLoaded }]"
   >
     <!-- Preload background image -->
     <img 
@@ -144,6 +144,7 @@ const checkAllLoaded = () => {
   gap: 4rem;
   align-items: center;
   padding: 3rem 2rem 0 5rem;
+  width: 100%;
 }
 
 /* Text Content Column */
@@ -284,76 +285,38 @@ const checkAllLoaded = () => {
   filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.8));
 }
 
-/* Alignment classes for different slide configurations */
-.text-left .hero-container {
-  /* Default is already left column = text, right column = book */
-}
-
-.text-left .hero-content {
-  align-items: center;
-  text-align: center;
-}
-
-.text-left .hero-book-cover {
+/* SIMPLIFIED ALIGNMENT - USING FLEX DIRECTION */
+.alignment-left .hero-container {
   display: flex;
-  justify-content: center;
+  flex-direction: row; /* Text left, Image right */
 }
 
-.text-center .hero-container {
-  grid-template-columns: 1fr;
-  text-align: center;
-}
-
-.text-center .hero-content {
-  align-items: center;
-  text-align: center;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.text-center .hero-book-cover {
-  order: -1;
+.alignment-right .hero-container {
   display: flex;
-  justify-content: center;
+  flex-direction: row-reverse; /* Image left, Text right */
 }
 
-.text-right .hero-container {
-  grid-template-columns: 1fr 1fr;
+/* Make sure both children take equal space */
+.alignment-left .hero-content,
+.alignment-right .hero-content,
+.alignment-left .hero-book-cover,
+.alignment-right .hero-book-cover {
+  flex: 1;
 }
 
-.text-right .hero-content {
-  order: 2;
-  align-items: center;
-  text-align: center;
-}
-
-.text-right .hero-book-cover {
-  order: 1;
-  display: flex;
-  justify-content: center;
-}
-
-/* Responsive */
+/* Responsive - Stack vertically on smaller screens */
 @media (max-width: 1024px) {
-  .hero-container {
-    grid-template-columns: 1fr;
+  .alignment-left .hero-container,
+  .alignment-right .hero-container {
+    flex-direction: column;
     gap: 3rem;
   }
   
-  .text-right .hero-container,
-  .text-left .hero-container {
-    grid-template-columns: 1fr;
+  .hero-content {
+    order: 2; 
   }
   
-  .text-right .hero-content,
-  .text-left .hero-content {
-    order: 2;
-    align-items: center;
-    text-align: center;
-  }
-  
-  .text-right .hero-book-cover,
-  .text-left .hero-book-cover {
+  .hero-book-cover {
     order: 1;
   }
   
@@ -378,6 +341,10 @@ const checkAllLoaded = () => {
   
   .book-cover-image {
     max-width: 250px;
+  }
+  
+  .hero-container {
+    padding: 2rem 1rem 0 1rem;
   }
 }
 </style>

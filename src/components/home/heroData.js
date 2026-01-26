@@ -28,27 +28,41 @@ export const heroSlides = [
     textColor: "white",
     alignment: "right"
   },
-  {
-    id: 3,
+    {
+     id: 3,
     title: "LEGACY OF GUARDIANS",
     titleLines: ["LEGACY OF", "GUARDIANS"],
     subtitle: "Chronicles of the Endless War - Book 3",
     description: "The final chapter approaches. Will the guardians prevail or will darkness consume the world forever?",
-    ctaText: "Coming Soon →",
+    ctaText: "Buy it now",
     ctaLink: "#",
-    bgImage: "//imgs/hero-bg-3.jpg",
-    overlayColor: "rgba(21, 21, 21, 0.8)",
-    bookCover: "/images/book4-cover.png",
+    bgImage: "/images/book3-bg.jpg",
+    overlayColor: "rgba(21, 21, 21, 0.01)",
+    bookCover: "/images/book3-flat.jpg",
     textColor: "white",
     alignment: "left"
-  }
-];
+  },
+  {
+    id: 4,
+    title: "THE ENDLESS WAR",
+    titleLines: ["THE ENDLESS", "WAR"],
+    subtitle: "Chronicles of the Endless War - Book 2",
+    description: "The battle continues in this thrilling sequel. \nNew alliances form as darkness spreads across the realm.",
+    ctaText: "Buy it now",
+    ctaLink: "#",
+    bgImage: "/images/book4-bg.jpg",
+    overlayColor: "rgba(21, 21, 21, 0.01)",
+    bookCover: "/images/book4-flat.jpg",
+    textColor: "white",
+    alignment: "right"
+  }]
+  
 
 export const chroniclesBooks = [
    {
     id: 1,
     title: "GHARANTIA'S SHADOW \n Novella 1",
-    flatCover: "/images/book3-cover.png",
+    flatCover: "/images/book3-cover.jpg",
     status: "get-it-free", 
     ctaText: "Get it free",
     ctaLink: "#newsletter"
@@ -72,7 +86,15 @@ export const chroniclesBooks = [
   {
     id: 4,
     title: "EMPIRE OF SHADOWS \n Book 3",
-    flatCover: "/images/book4-cover.png",
+    flatCover: "/images/book3-flat.jpg",
+    status: "coming-soon",
+    ctaText: "Coming soon",
+    ctaLink: "#"
+  },
+   {
+    id: 5,
+    title: "EMPIRE OF SHADOWS \n Book 3",
+    flatCover: "/images/book4-flat.jpg",
     status: "coming-soon",
     ctaText: "Coming soon",
     ctaLink: "#"

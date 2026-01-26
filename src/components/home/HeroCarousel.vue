@@ -20,10 +20,14 @@
         class="carousel-track"
         :style="{ transform: `translateX(-${currentIndex * 100}%)` }"
       >
-        <HeroSlide 
-          v-for="slide in slides" 
-          :key="slide.id" 
-          :slide="slide" 
+         <HeroSlide 
+    v-for="(slide, index) in slides"  
+    :key="slide.id" 
+    :slide="slide"
+    :slide-index="index"  
+    class="carousel-slide"
+    @image-loaded="handleImageLoaded(slide.id)"
+  />
           class="carousel-slide"
           @image-loaded="handleImageLoaded(slide.id)"
         />

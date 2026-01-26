@@ -7,7 +7,8 @@
         <div class="newsletter-left">
           <div class="book-cover-container">
             <img 
-              src="../../assets/images/book3-cover.png" 
+              src="../../assets/images/book3-cover.jpg"
+              
               alt="Gharantia's Shadow - Free Novella"
               class="book-cover-image"
             />
