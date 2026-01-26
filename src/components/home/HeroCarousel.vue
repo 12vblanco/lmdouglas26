@@ -137,6 +137,7 @@ onUnmounted(() => {
   height: 80px;
   position: relative;
   margin-bottom: 1.5rem;
+  filter: drop-shadow(0 10px 30px rgba(223, 172, 41, 0.4));
 }
 
 .hourglass-top,
@@ -152,13 +153,13 @@ onUnmounted(() => {
 .hourglass-top {
   top: 0;
   border-top: 35px solid var(--gold-dark);
-  animation: sand-flow-top 2s ease-in-out infinite;
+  animation: sand-flow-top 2.5s ease-in-out infinite;
 }
 
 .hourglass-bottom {
   bottom: 0;
   border-bottom: 35px solid var(--gold-dark);
-  animation: sand-flow-bottom 2s ease-in-out infinite;
+  animation: sand-flow-bottom 2.5s ease-in-out infinite;
 }
 
 .sand {
@@ -169,34 +170,41 @@ onUnmounted(() => {
   left: 50%;
   top: 50%;
   transform: translateX(-50%) translateY(-50%);
-  animation: sand-fall 2s ease-in-out infinite;
+  animation: sand-fall 2.5s ease-in-out infinite;
   opacity: 0.8;
+  box-shadow: 0 0 10px rgba(223, 172, 41, 0.5);
 }
 
 @keyframes sand-flow-top {
   0%, 100% {
     border-top-width: 35px;
+    opacity: 1;
   }
   50% {
     border-top-width: 15px;
+    opacity: 0.85;
   }
 }
 
 @keyframes sand-flow-bottom {
   0%, 100% {
     border-bottom-width: 15px;
+    opacity: 0.85;
   }
   50% {
     border-bottom-width: 35px;
+    opacity: 1;
   }
 }
 
 @keyframes sand-fall {
   0%, 100% {
     opacity: 0;
+    transform: translateX(-50%) translateY(-80%) scale(0.8);
   }
   50% {
     opacity: 1;
+    transform: translateX(-50%) translateY(80%) scale(1);
   }
 }
 
@@ -207,6 +215,7 @@ onUnmounted(() => {
   letter-spacing: 0.15em;
   text-transform: uppercase;
   animation: pulse 1.5s ease-in-out infinite;
+  text-shadow: 0 0 20px rgba(223, 172, 41, 0.5);
 }
 
 @keyframes pulse {
