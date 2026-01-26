@@ -65,7 +65,7 @@
               </div>
               
               <!-- Tooltip Arrow -->
-              <div class="tooltip-arrow" :style="getArrowStyle(point.position)"></div>
+              <!-- <div class="tooltip-arrow" :style="getArrowStyle(point.position)"></div> -->
             </div>
           </div>
         </div>
@@ -423,8 +423,8 @@ const getArrowStyle = (position) => {
 
 .map-title {
   position: absolute;
-  top: 12%;
-  right: 7%;
+  top: 30%;
+  right: 27%;
   font-family: var(--font-heading);
   font-size: 2.4rem;
   line-height: 1.1;
@@ -436,8 +436,8 @@ const getArrowStyle = (position) => {
 
 .map-description {
   position: absolute;
-  top: 15.4%;
-  right: 6%;
+  top: 33.5%;
+  right: 25%;
   font-family: var(--font-body);
   font-size: 1.1rem;
   line-height: 1.6;

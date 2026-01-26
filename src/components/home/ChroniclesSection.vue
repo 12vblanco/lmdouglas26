@@ -284,7 +284,7 @@ margin-bottom: 0.8rem;
 
 .book-cta:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(97, 28, 45, 0.4);
+  box-shadow: 0px 10px 20px rgba(223, 172, 41, 0.6);
 }
 
 .btn-arrow {

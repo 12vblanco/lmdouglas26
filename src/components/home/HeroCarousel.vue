@@ -1,8 +1,20 @@
 <!-- src/components/home/HeroCarousel.vue -->
 <template>
   <section class="hero-carousel">
+    <!-- Loading Screen -->
+    <transition name="fade">
+      <div v-if="isInitialLoading" class="carousel-loading">
+        <div class="hourglass">
+          <div class="hourglass-top"></div>
+          <div class="hourglass-bottom"></div>
+          <div class="sand"></div>
+        </div>
+        <p class="loading-text">Loading</p>
+      </div>
+    </transition>
+
     <!-- Carousel Container -->
-    <div class="carousel-container">
+    <div class="carousel-container" :class="{ 'is-loading': isInitialLoading }">
       <!-- Slides -->
       <div 
         class="carousel-track"
@@ -13,6 +25,7 @@
           :key="slide.id" 
           :slide="slide" 
           class="carousel-slide"
+          @image-loaded="handleImageLoaded(slide.id)"
         />
       </div>
       
@@ -26,7 +39,7 @@
           @click="goToSlide(index)"
           :aria-label="`Go to slide ${index + 1}`"
         >
-          <div class="indicator-progress" v-if="currentIndex === index"></div>
+          <div class="indicator-progress" v-if="currentIndex === index && !isTransitioning"></div>
         </button>
       </div>
     </div>
@@ -40,19 +53,45 @@ import HeroSlide from './HeroSlide.vue';
 
 const slides = heroSlides;
 const currentIndex = ref(0);
+const isInitialLoading = ref(true);
+const isTransitioning = ref(false);
+const loadedImages = ref(new Set());
 let autoplayInterval;
 
+const handleImageLoaded = (slideId) => {
+  loadedImages.value.add(slideId);
+  
+  // Check if all initial images are loaded
+  if (loadedImages.value.size === slides.length) {
+    setTimeout(() => {
+      isInitialLoading.value = false;
+      startAutoplay();
+    }, 500);
+  }
+};
+
 const nextSlide = () => {
-  currentIndex.value = (currentIndex.value + 1) % slides.length;
+  if (isTransitioning.value) return;
+  
+  const nextIndex = (currentIndex.value + 1) % slides.length;
+  goToSlide(nextIndex);
 };
 
 const goToSlide = (index) => {
+  if (isTransitioning.value || currentIndex.value === index) return;
+  
+  isTransitioning.value = true;
   currentIndex.value = index;
+  
+  // Wait for transition to complete
+  setTimeout(() => {
+    isTransitioning.value = false;
+  }, 1200); // Match the transition duration
 };
 
 const startAutoplay = () => {
   stopAutoplay();
-  autoplayInterval = setInterval(nextSlide, 6000); // Changed to 8 seconds
+  autoplayInterval = setInterval(nextSlide, 6000);
 };
 
 const stopAutoplay = () => {
@@ -62,7 +101,7 @@ const stopAutoplay = () => {
 };
 
 onMounted(() => {
-  startAutoplay();
+  // Autoplay will start after images load
 });
 
 onUnmounted(() => {
@@ -75,17 +114,135 @@ onUnmounted(() => {
   position: relative;
   overflow: hidden;
   padding-bottom: 3rem;
+  min-height: 78vh;
+}
+
+/* Loading Screen */
+.carousel-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.hourglass {
+  width: 60px;
+  height: 80px;
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.hourglass-top,
+.hourglass-bottom {
+  width: 0;
+  height: 0;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  position: absolute;
+  left: 0;
+}
+
+.hourglass-top {
+  top: 0;
+  border-top: 35px solid var(--gold-dark);
+  animation: sand-flow-top 2s ease-in-out infinite;
+}
+
+.hourglass-bottom {
+  bottom: 0;
+  border-bottom: 35px solid var(--gold-dark);
+  animation: sand-flow-bottom 2s ease-in-out infinite;
+}
+
+.sand {
+  position: absolute;
+  width: 4px;
+  height: 20px;
+  background: var(--gold-dark);
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  animation: sand-fall 2s ease-in-out infinite;
+  opacity: 0.8;
+}
+
+@keyframes sand-flow-top {
+  0%, 100% {
+    border-top-width: 35px;
+  }
+  50% {
+    border-top-width: 15px;
+  }
+}
+
+@keyframes sand-flow-bottom {
+  0%, 100% {
+    border-bottom-width: 15px;
+  }
+  50% {
+    border-bottom-width: 35px;
+  }
+}
+
+@keyframes sand-fall {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.loading-text {
+  font-family: var(--font-body);
+  font-size: 1.25rem;
+  color: var(--gold-dark);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 
 .carousel-container {
   position: relative;
   width: 100%;
   overflow: hidden;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.carousel-container.is-loading {
+  opacity: 0;
 }
 
 .carousel-track {
   display: flex;
-  transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1); /* Slower transition */
+  transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .carousel-slide {
@@ -134,7 +291,7 @@ onUnmounted(() => {
   height: 16px;
   border-radius: 50%;
   border: 2px solid var(--red);
-  animation: progress 8s linear infinite; /* Match 8s autoplay */
+  animation: progress 6s linear infinite;
 }
 
 @keyframes progress {
@@ -150,6 +307,25 @@ onUnmounted(() => {
 @media (max-width: 768px) {
   .carousel-indicators {
     bottom: 1.5rem;
+  }
+  
+  .hourglass {
+    width: 50px;
+    height: 70px;
+  }
+  
+  .hourglass-top,
+  .hourglass-bottom {
+    border-left-width: 25px;
+    border-right-width: 25px;
+  }
+  
+  .hourglass-top {
+    border-top-width: 30px;
+  }
+  
+  .hourglass-bottom {
+    border-bottom-width: 30px;
   }
 }
 </style>

@@ -62,6 +62,13 @@ const handleNavClick = (itemId) => {
   activeItem.value = itemId
   console.log(`Navigating to: ${itemId}`)
   
+ // Scroll to section
+const element = document.getElementById(itemId)
+if (element) {
+  const offsetTop = element.offsetTop + 240 // Adjust 100 to your desired offset
+  window.scrollTo({ top: offsetTop, behavior: 'smooth' })
+}
+  
   // Close mobile menu if open
   if (isMobileOpen.value) {
     closeMobileMenu()
@@ -115,8 +122,8 @@ onUnmounted(() => {
   height: 90px;
   z-index: 1000;
   padding: 1.4rem 0 1rem 0;
-  background: var(--white);;
-}
+  background: var(--white);
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);}
 
 .navbar-container {
   display: flex;

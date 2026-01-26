@@ -2,9 +2,18 @@
 <template>
   <div 
     class="hero-slide" 
-    :style="{ backgroundImage: `url(${slide.bgImage})` }"
-    :class="`text-${slide.alignment}`"
+    :style="{ backgroundImage: slideLoaded ? `url(${slide.bgImage})` : 'none' }"
+    :class="[`text-${slide.alignment}`, { 'loaded': slideLoaded }]"
   >
+    <!-- Preload background image -->
+    <img 
+      :src="slide.bgImage" 
+      @load="handleBgLoad"
+      @error="handleBgLoad"
+      style="display: none;"
+      alt=""
+    />
+    
     <!-- Background Overlay -->
     <div 
       class="hero-overlay" 
@@ -56,6 +65,8 @@
           :src="slide.bookCover" 
           :alt="slide.title"
           class="book-cover-image"
+          @load="handleCoverLoad"
+          @error="handleCoverLoad"
         />
       </div>
     </div>
@@ -63,12 +74,37 @@
 </template>
 
 <script setup>
-defineProps({
+import { ref } from 'vue';
+
+const props = defineProps({
   slide: {
     type: Object,
     required: true
   }
 });
+
+const emit = defineEmits(['image-loaded']);
+
+const bgLoaded = ref(false);
+const coverLoaded = ref(false);
+const slideLoaded = ref(false);
+
+const handleBgLoad = () => {
+  bgLoaded.value = true;
+  checkAllLoaded();
+};
+
+const handleCoverLoad = () => {
+  coverLoaded.value = true;
+  checkAllLoaded();
+};
+
+const checkAllLoaded = () => {
+  if (bgLoaded.value && coverLoaded.value && !slideLoaded.value) {
+    slideLoaded.value = true;
+    emit('image-loaded', props.slide.id);
+  }
+};
 </script>
 
 <style scoped>
@@ -78,11 +114,17 @@ defineProps({
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-color: #1a1a1a;
   display: flex;
   align-items: center;
   overflow: hidden;
-     white-space: pre-line;
+  white-space: pre-line;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
 
+.hero-slide.loaded {
+  opacity: 1;
 }
 
 .hero-overlay {
@@ -125,11 +167,10 @@ defineProps({
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  margin-bottom: 1.4srem;
+  margin-bottom: 1.4rem;
   opacity: 0.9;
   color: #fff;
   white-space: pre-line;
-
 }
 
 .hero-title {
@@ -146,7 +187,6 @@ defineProps({
 .title-line {
   /* Independent gradient for each line */
   background: linear-gradient(to bottom, #FFE607 0%, #F0B429 50%, #bd7500 100%); 
-
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -181,6 +221,7 @@ defineProps({
   border: 1px solid var(--gold-dark);
   transition: all 0.3s ease;
   margin: 0 auto;
+  position: relative;
 }
 
 .btn-hero::before {

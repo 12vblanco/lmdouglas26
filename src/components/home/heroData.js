@@ -45,21 +45,21 @@ export const heroSlides = [
 ];
 
 export const chroniclesBooks = [
- {
+   {
     id: 1,
-    title: "GHARANTIA'S GUARDIAN \n Book 1",
-    flatCover: "/images/book1-flat.jpg",
-    status: "available", 
-    ctaText: "Buy it now",
-    ctaLink: "#"
-  },
-  {
-    id: 2,
     title: "GHARANTIA'S SHADOW \n Novella 1",
     flatCover: "/images/book3-cover.png",
     status: "get-it-free", 
     ctaText: "Get it free",
     ctaLink: "#newsletter"
+  },
+ {
+    id: 2,
+    title: "GHARANTIA'S GUARDIAN \n Book 1",
+    flatCover: "/images/book1-flat.jpg",
+    status: "available", 
+    ctaText: "Buy it now",
+    ctaLink: "#"
   },
   {
     id: 3,
