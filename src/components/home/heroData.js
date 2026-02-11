@@ -113,82 +113,123 @@ export const chroniclesBooks = [
 export const mapPoints = [
   {
     id: 1,
-    title: "The Crystal Citadel",
-    description: "Ancient fortress where the Guardians first made their oath. Built from living crystal that glows with moonlight.",
+    title: "The Spirit of the Ocean’s Waters",
+    description: "The Spirit of the Ocean, one of the fael gods, extends his sway eastward against the Northern Storm, his subjects clashing over the border with relentless fury. Legend holds he has many wives and countless children, most of the latter drafted into his vast army, asserting his presence over these contested waters.",
     image: "",
-    position: { top: '60%', left: '35%' },
-    type: "fortress"
+    position: { top: '26%', left: '36%' },
+    type: "god"
   },
   {
     id: 2,
-    title: "Whispering Woods",
-    description: "A mystical forest where trees speak secrets of ancient magic. Many have entered, but few return unchanged.",
-    image: "/images/locations/woods.jpg",
-    position: { top: '45%', left: '25%' },
-    type: "forest"
+    title: "Jasper (JAS-per)",
+    description: "Hidden within the northern mountains, Jasper is a free city beyond Lord Xuren’s grasp, where the crown passes from father to son. Among the city’s few dealings with the outside world is the twice-yearly delivery of tentil tea to the mage Tower, believed to bolster vitality and longevity.",
+    image: "",
+    position: { top: '5%', left: '25%' },
+    type: "city"
   },
   {
     id: 3,
-    title: "Ember Peaks",
-    description: "Volcanic mountains that burn with eternal fire. Home to the Fire Drakes and source of Dragonfire steel.",
+    title: "The Northern Sea",
+    description: "With ruthless tyranny, the creature-fael dictator known as the Northern Storm—or Notovan in Old Speak—rules these waters. His legion hunts the icy currents, and any ship entering without permission pays a heavy toll.",
     image: "",
-    position: { top: '75%', left: '90%' },
-    type: "mountains"
+    position: { top: '26%', left: '50%' },
+    type: "god"
   },
   {
     id: 4,
-    title: "Silverfall River",
-    description: "A river whose waters shimmer like liquid silver. Said to heal wounds and grant visions of the future.",
-    image: "/images/Davga_HR.jpg",
-    position: { top: '55%', left: '50%' },
-    type: "river"
+    title: "Port of Rakul (RAH-kul)",
+    description: "Port of Rakul (RAH-kul)Said to mark the northernmost reach of Lord Xuren’s power, this frozen port is little more than ice, stone, and chains. Its prison swallows political enemies and the unworthy alike, and none who are sent here are ever heard from again.",
+    image: "",
+    position: { top: '1.6%', left: '81%' },
+    type: "port"
   },
   {
     id: 5,
-    title: "Shadowfen Bog",
-    description: "A treacherous swamp where darkness gathers. The Marsh Wraiths guard ancient secrets in its murky depths.",
-    image: "/images/locations/bog.jpg",
-    position: { top: '70%', left: '30%' },
-    type: "swamp"
+    title: "Lere De-Ohr Isles (LEHR deh-OHR)",
+    description: "A chain of three islands off the northeastern coast of Simild, nominally independent and hostile to outsiders. Long used as pirate havens, the islands’ loyalties shift with the tides.",
+    image: "",
+    position: { top: '34%', left: '88.7%' },
+    type: "islands"
   },
   {
     id: 6,
-    title: "Sunstone Plateau",
-    description: "A vast desert plateau with crystals that store sunlight. The nomadic Sun Elves call this place home.",
+    title: "Gharantia City (GAR-an-tee-ah)",
+    description: "The capital of the realm of Gharantia. The palace sits upon a hill, with the Obsivanta mountain range rising behind it and the great port spread out before it. Within the palace grounds stands the Black Tower, housing the famed Red Stone. Queen Velardis rules her twelve duchies from this central seat of power, assisted by her cousin Melane and Melane’s husband, Criterious, the Guardian.",
     image: "",
-    position: { top: '80%', left: '70%' },
-    type: "desert"
+    position: { top: '56.9%', left: '69.1%' },
+    type: "city"
   },
   {
     id: 7,
-    title: "Stormhelm Keep",
-    description: "A fortress built into a cliffside, constantly battered by magical storms. Seat of the Stormwarden order.",
+    title: "Simild (SIM-ild)",
+    description: "A coastal duchy of Gharantia, wealthy through maritime trade and the realm’s largest exporter of salt. Its inland regions are fertile and tightly controlled, with ownership restricted to a small number of powerful families.",
     image: "",
-    position: { top: '92%', left: '80%' },
-    type: "fortress"
+    position: { top: '56.9%', left: '90%' },
+    type: "city"
   },
   {
     id: 8,
-    title: "Moonveil Lake",
-    description: "A lake that reflects the moon even during daylight. The waters are said to be a gateway to the spirit realm.",
-    image: "/images/Pallemina_HR.jpg",
-    position: { top: '65%', left: '65%' },
-    type: "lake"
+    title: "Constance (KON-stanss)",
+    description: "An eastern duchy of Gharantia, once the first kingdom in the region, with its original seat at the ancient walled city of Cross Lands. Renowned for marble quarries and fertile lands. Capital: Callamerta (KAL-ah-mer-tah).",
+    image: "",
+    position: { top: '65.9%', left: '90%' },
+    type: "city"
   },
   {
     id: 9,
-    title: "Ironroot Depths",
-    description: "Underground caverns with trees of living iron. Dwarven clans mine the rare metal for their legendary weapons.",
-    image: "/images/Pallemina_HR.jpg",
-    position: { top: '75%', left: '55%' },
-    type: "caverns"
+    title: "The Standing Stones of Brutalies (BROO-tah-lees)",
+    description: "Once the centre of an ancient people, now a desolate, abandoned region. The myths survive only in the memories of the oldest folk. A dirt track through this forsaken land leads to Jurnaste (JUR-nah-stay), once a great city now reduced to ash.",
+    image: "",
+    position: { top: '94%', left: '77%' },
+    type: "ruins"
   },
   {
     id: 10,
-    title: "Celestial Spire",
-    description: "A tower that reaches into the clouds, built by star-touched mages to study the constellations and their magic.",
-    image: "/images/Davga_HR.jpg",
-    position: { top: '75%', left: '15%' },
+    title: "Mountain Homestead",
+    description: "Childhood home of Pilt, nestled in a remote valley high in the mountains. The surrounding area is dotted with flocks, tended by the neighbouring shepherds.",
+    image: "",
+    position: { top: '72%', left: '64%' },
+    type: "town"
+  },
+  {
+    id: 12,
+    title: "Larches (LAR-chess)",
+    description: "A small, mountainous duchy of Gharantia, formerly independent before being absorbed under the rule of Queen Solariss. Its lands lie within a valley encircled by the Larstack Mountains, making access difficult. The fast-flowing River Loothe runs through the duchy. It is the home duchy of Criterious, the Guardian of Gharantia, and the region is known for its many shrines and enduring local traditions.",
+    image: "",
+    position: { top: '74%', left: '52.4%' },
+    type: "Duchy"
+  },
+  {
+    id: 13,
+    title: "Calarom (KAH-lah-rom)",
+    description: "A duchy bordering Larches, Gharantia, Obsilye, and the sparsely populated Yeojinia. Its territory lies between mountains and fertile plains, forming a natural frontier and crossroads. The people are known for their martial prowess, and their banners display the snarling grey fox, symbol of the grassy Calarom plains. Capital: High Hilt.",
+    image: "",
+        position: { top: '70%', left: '46%' },
+
+    type: "Duchy"
+  },
+  {
+    id: 14,
+    title: "Obsilye (OB-sil-eye)",
+    description: "The largest duchy of Gharantia after the Gharantian lands themselves, crescent-shaped along the western coast. Rich from trade, it contains the natural port of Rameel and maintains a strong fleet. Ruled by Lord Mikarf, who exercises careful control over the coast and neighbouring territories to secure his duchy’s wealth.",
+    image: "",
+        position: { top: '62%', left: '32%' },
     type: "tower"
+  },
+  {
+    id: 15,
+    title: "Gulsbad (GULS-bad) and Neighbours: Weathers Worn (WEH-thers WORN) & La’em (LAH-em) ",
+    description: "A cluster of territories bordering Obsilye to the east and the Barren Flats to the west. Historically established by one of the queens as a buffer at the edge of the realm, the lands were granted to the region’s strongest clans, whose family names now identify the territories. The terrain is infertile, and the inhabitants are often nomadic, herding sheep and cattle across the rugged land.",
+    image: "",
+        position: { top: '67%', left: '25%' },
+    type: "Wasteland"
+  },
+  {
+    id: 16,
+    title: "The Barren Flats",
+    description: "A wide stretch of prairie, sparsely vegetated and unoccupied by humans, yet rich in wildlife. The flats rise toward the Barren Mountains and cliffs, forming a rugged natural barrier that protects the interior from any approach from the western seas.",
+    image: "",
+    position: { top: '62%', left: '15%' },
+    type: "Grasslands"
   }
 ];
