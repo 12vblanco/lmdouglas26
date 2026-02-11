@@ -110,7 +110,7 @@ const checkAllLoaded = () => {
 <style scoped>
 .hero-slide {
   position: relative;
-  height: 78vh;
+  height: calc(100vh - 30px);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

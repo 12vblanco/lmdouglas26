@@ -134,9 +134,9 @@ const handleCtaClick = (link, status) => {
 /* Books Grid */
 .books-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 2rem;
-  max-width: 1200px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 3rem;
+  max-width: 1100px;
   margin: 0 auto;
 }
 
