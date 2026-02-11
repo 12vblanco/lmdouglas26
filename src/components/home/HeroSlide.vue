@@ -38,18 +38,35 @@
           {{ slide.subtitle }}
         </p>
 
-        <!-- CTA Button -->
-        <a 
-          :href="slide.ctaLink" 
-          class="btn-hero"
-          :style="{
-            '--btn-gold': '#DFAC29',
-            '--btn-gold-light': '#FFE607'
-          }"
-        >
-          {{ slide.ctaText }}
-          <span class="btn-arrow">→</span>
-        </a>
+     <!-- CTA Button -->
+<template v-if="slide.ctaLink && slide.ctaLink !== '#'">
+  <a 
+    :href="slide.ctaLink" 
+    target="_blank"
+    rel="noopener noreferrer"
+    class="btn-hero"
+    :style="{
+      '--btn-gold': '#DFAC29',
+      '--btn-gold-light': '#FFE607'
+    }"
+  >
+    {{ slide.ctaText }}
+    <span class="btn-arrow">→</span>
+  </a>
+</template>
+<template v-else>
+  <button 
+    class="btn-hero btn-disabled"
+    :style="{
+      '--btn-gold': '#6c757d',
+      '--btn-gold-light': '#adb5bd'
+    }"
+    disabled
+  >
+    {{ slide.ctaText }}
+    <!-- No arrow for disabled state -->
+  </button>
+</template>
         
 
         <!-- Description -->
