@@ -54,14 +54,14 @@
       <!-- Bottom Row (Copyright) -->
       <div class="footer-bottom">
         <p class="copyright">
-          &copy; LM DOUGLAS {{ currentYear }} - Website 
+          &copy; LM DOUGLAS {{ currentYear }} - 
           <a 
             href="https://victorblanco.com" 
             target="_blank" 
             rel="noopener noreferrer"
             class="portfolio-link"
           >
-            Victor Blanco
+            Website Victor Blanco
           </a>
         </p>
       </div>
