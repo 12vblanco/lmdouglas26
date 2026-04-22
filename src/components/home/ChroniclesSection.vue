@@ -10,7 +10,7 @@
       </div>
 
       <!-- Books Grid -->
-      <div class="books-grid" >
+      <div class="books-grid">
         <div 
           v-for="book in books" 
           :key="book.id" 
@@ -18,7 +18,7 @@
           :class="book.status"
         >
           <!-- Book Cover Image -->
-          <div class="book-cover-container" >
+          <div class="book-cover-container">
             <img 
               :src="book.flatCover" 
               :alt="book.title"
@@ -36,17 +36,24 @@
           <div class="book-info">
             <p class="book-title">{{ book.title }}</p>
             
-            <!-- CTA Button - ALL SAME DESIGN -->
-            <a 
-              :href="book.ctaLink" 
-              class="book-cta"
-              :class="{ 'disabled': book.status === 'coming-soon' }"
-              :aria-label="`${book.ctaText} - ${book.title}`"
-              @click.prevent="handleCtaClick(book.ctaLink, book.status)"
-            >
-              {{ book.ctaText }}
-              <span class="cta-arrow" v-if="book.status !== 'coming-soon'">→</span>
-            </a>
+            <!-- CTA Button - Different for Coming Soon -->
+            <template v-if="book.status === 'coming-soon'">
+              <button class="book-cta disabled" disabled>
+                {{ book.ctaText }}
+                <ClockIcon size="sm" />
+              </button>
+            </template>
+            <template v-else>
+              <a 
+                :href="book.ctaLink" 
+                class="book-cta"
+                :aria-label="`${book.ctaText} - ${book.title}`"
+                @click.prevent="handleCtaClick(book.ctaLink, book.status)"
+              >
+                {{ book.ctaText }}
+                <span class="cta-arrow">→</span>
+              </a>
+            </template>
           </div>
         </div>
       </div>
@@ -55,6 +62,7 @@
 </template>
 
 <script setup>
+import ClockIcon from '../svgs/ClockIcon.vue';
 import { chroniclesBooks } from './heroData.js';
 
 const books = chroniclesBooks;
@@ -149,7 +157,7 @@ const handleCtaClick = (link, status) => {
   overflow: hidden;
   transition: all 0.4s ease;
   position: relative;
-   overflow: visible;
+  overflow: visible;
 }
 
 .book-card:hover {
@@ -167,7 +175,7 @@ const handleCtaClick = (link, status) => {
   height: 300px;
   max-width: 244px;
   margin: 0 auto;
-  overflow: visible
+  overflow: visible;
 }
 
 .book-cover-image {
@@ -179,11 +187,10 @@ const handleCtaClick = (link, status) => {
   transform-origin: center center; 
 }
 
-.book-card:hover .book-cover-image{
+.book-card:hover .book-cover-image {
   transform: scale(1.1);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
 }
-
 
 .book-cover-image.grayscale {
   filter: grayscale(0.9);
@@ -240,30 +247,37 @@ const handleCtaClick = (link, status) => {
   font-size: 1.1rem;
   line-height: 1.3;
   font-weight: 600;
-text-align: left;  
-margin-bottom: 0.8rem;
+  text-align: center;  
+  margin-top: 0.8rem;
+  margin-bottom: 0.8rem;
   color: var(--black);
   display: flex;
   align-items: center;
   justify-content: center;
-   white-space: pre-line;
+  white-space: pre-line;
 }
 
 /* Center the CTA button */
 .book-cta {
   display: inline-flex;
+  width: 178px;
+  height: 54px;
   align-items: center;
-  gap: 1rem;
+  justify-content: center;
+  gap: 0.75rem;
   font-family: var(--font-body);
   font-weight: 600;
   font-size: 1.125rem;
   color: var(--gold-dark);
   background: var(--black);
-  padding: .4rem 1.2rem;
-  border-radius: 4px;
+  padding: .6rem 0.4rem;
+  border-radius: 8px;
   border: 1px solid var(--gold-dark);
   transition: all 0.3s ease;
   margin: 0 auto;
+  position: relative;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 .book-cta::before {
@@ -273,27 +287,20 @@ margin-bottom: 0.8rem;
   left: 0;
   width: 100%;
   height: 100%;
+  background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-light) 100%);
   opacity: 0;
   transition: opacity 0.3s ease;
   z-index: -1;
+  border-radius: 8px;
 }
 
 .book-cta:hover::before {
-  opacity: 1;
+  opacity: 0.15;
 }
 
 .book-cta:hover {
   transform: translateY(-2px);
-  box-shadow: 0px 10px 20px rgba(223, 172, 41, 0.6);
-}
-
-.btn-arrow {
-  font-size: 1.5rem;
-  transition: transform 0.3s ease;
-}
-
-.book-cta:hover .btn-arrow {
-  transform: translateX(5px);
+  box-shadow: 0px 10px 20px rgba(223, 172, 41, 0.3);
 }
 
 /* For Coming Soon button (disabled state) */
@@ -305,15 +312,13 @@ margin-bottom: 0.8rem;
   border-color: var(--gold-dark);
 }
 
-.book-cta.disabled:hover::before {
-  opacity: 0;
-}
-
 .book-cta.disabled:hover {
   transform: none;
   box-shadow: none;
-  color: var(--gold-dark);
-  border-color: var(--gold-dark);
+}
+
+.book-cta.disabled:hover::before {
+  opacity: 0;
 }
 
 .cta-arrow {
@@ -323,10 +328,6 @@ margin-bottom: 0.8rem;
 
 .book-cta:hover .cta-arrow {
   transform: translateX(4px);
-}
-
-.book-cta.disabled .cta-arrow {
-  display: none;
 }
 
 /* Responsive */
@@ -363,7 +364,8 @@ margin-bottom: 0.8rem;
   .book-cta {
     font-size: 0.875rem;
     padding: 0.625rem 1.25rem;
-    min-height: 44px;
+    min-height: 50px;
+    width: 150px;
   }
 }
 

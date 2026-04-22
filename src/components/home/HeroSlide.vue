@@ -23,12 +23,11 @@
     <div class="container hero-container">
       <!-- Text Content Column -->
       <div class="hero-content">
-
         <!-- Main Title -->
         <h1 class="hero-title">
           <span v-for="(line, index) in slide.titleLines" 
-        :key="index" 
-        class="title-line">
+            :key="index" 
+            class="title-line">
             {{ line }}
           </span>
         </h1>
@@ -38,43 +37,33 @@
           {{ slide.subtitle }}
         </p>
 
-     <!-- CTA Button -->
-<template v-if="slide.ctaLink && slide.ctaLink !== '#'">
-  <a 
-    :href="slide.ctaLink" 
-    target="_blank"
-    rel="noopener noreferrer"
-    class="btn-hero"
-    :style="{
-      '--btn-gold': '#DFAC29',
-      '--btn-gold-light': '#FFE607'
-    }"
-  >
-    {{ slide.ctaText }}
-    <span class="btn-arrow">→</span>
-  </a>
-</template>
-<template v-else>
-  <button 
-    class="btn-hero btn-disabled"
-    :style="{
-      '--btn-gold': '#6c757d',
-      '--btn-gold-light': '#adb5bd'
-    }"
-    disabled
-  >
-    {{ slide.ctaText }}
-    <!-- No arrow for disabled state -->
-  </button>
-</template>
-        
-
         <!-- Description -->
         <p class="hero-description">
           {{ slide.description }}
         </p>
-        
+
+                <!-- CTA Button -->
+        <template v-if="slide.ctaLink && slide.ctaLink !== '#'">
+          <a 
+            :href="slide.ctaLink" 
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-hero"
+          >
+            {{ slide.ctaText }}
+            <span class="btn-arrow">→</span>
+          </a>
+        </template>
+        <template v-else>
+          <button class="btn-hero btn-disabled" disabled>
+            {{ slide.ctaText }}
+                        <ClockIcon size="sm" />
+
+          </button>
+        </template>
       </div>
+
+      
       
       <!-- Book Cover Column -->
       <div class="hero-book-cover">
@@ -92,6 +81,7 @@
 
 <script setup>
 import { ref } from 'vue';
+import ClockIcon from '../svgs/ClockIcon.vue'; // Add this import
 
 const props = defineProps({
   slide: {
@@ -181,12 +171,11 @@ const checkAllLoaded = () => {
 
 .hero-subtitle {
   font-family: var(--font-body);
-  font-size: 1.1rem;
+  font-size: 1.4rem;
   font-weight: 500;
-  letter-spacing: 0.1em;
+  letter-spacing: -.1px;
+  margin-bottom: .2rem;
   text-transform: uppercase;
-  margin-bottom: 1.4rem;
-  opacity: 0.9;
   color: #fff;
   white-space: pre-line;
 }
@@ -196,14 +185,15 @@ const checkAllLoaded = () => {
   font-size: 62px;
   line-height: 1.1;
   letter-spacing: -0.02em;
-  margin-bottom: -.6rem;
+  margin-bottom: 1rem;
   text-align: center;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  gap: 0;
 }
 
 .title-line {
-  /* Independent gradient for each line */
   background: linear-gradient(to bottom, #FFE607 0%, #F0B429 50%, #bd7500 100%); 
   -webkit-background-clip: text;
   background-clip: text;
@@ -214,11 +204,11 @@ const checkAllLoaded = () => {
 
 .hero-description {
   font-family: var(--font-body);
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   line-height: 1.6;
   max-width: 600px;
-  opacity: 0.95;
-  margin-top: 1.6rem;
+  font-weight: 700;
+  margin-top: .2rem;
   color: #fff;
   margin-left: auto;
   margin-right: auto;
@@ -227,19 +217,23 @@ const checkAllLoaded = () => {
 /* Center the CTA button */
 .btn-hero {
   display: inline-flex;
+  width: 172px;
+  height: 54px;
   align-items: center;
-  gap: 1rem;
+  justify-content: center;
+  gap: 0.5rem;
   font-family: var(--font-body);
   font-weight: 600;
   font-size: 1.125rem;
-  color: var(--gold-dark);
+  color: var(--gold-light);
   background: var(--black);
-  padding: .4rem 1.2rem;
-  border-radius: 4px;
-  border: 1px solid var(--gold-dark);
+  padding: .6rem 0cm;
+  border-radius: 8px;
+  border: 1px solid var(--gold-light);
   transition: all 0.3s ease;
   margin: 0 auto;
   position: relative;
+  cursor: pointer;
 }
 
 .btn-hero::before {
@@ -249,18 +243,34 @@ const checkAllLoaded = () => {
   left: 0;
   width: 100%;
   height: 100%;
+  background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-light) 100%);
   opacity: 0;
   transition: opacity 0.3s ease;
   z-index: -1;
+  border-radius: 8px;
 }
 
 .btn-hero:hover::before {
-  opacity: 1;
+  opacity: 0.15;
 }
 
 .btn-hero:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 30px rgba(223, 172, 41, 0.3);
+}
+
+.btn-hero.btn-disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.btn-hero.btn-disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.btn-hero.btn-disabled:hover::before {
+  opacity: 0;
 }
 
 .btn-arrow {
@@ -305,12 +315,12 @@ const checkAllLoaded = () => {
 /* SIMPLIFIED ALIGNMENT - USING FLEX DIRECTION */
 .alignment-left .hero-container {
   display: flex;
-  flex-direction: row; /* Text left, Image right */
+  flex-direction: row;
 }
 
 .alignment-right .hero-container {
   display: flex;
-  flex-direction: row-reverse; /* Image left, Text right */
+  flex-direction: row-reverse;
 }
 
 /* Make sure both children take equal space */
@@ -352,7 +362,9 @@ const checkAllLoaded = () => {
   }
   
   .btn-hero {
-    padding: 0.875rem 2rem;
+    width: 150px;
+    height: 50px;
+    padding: 0.875rem 1.5rem;
     font-size: 1rem;
   }
   

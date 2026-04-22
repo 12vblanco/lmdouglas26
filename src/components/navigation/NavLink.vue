@@ -50,7 +50,7 @@ const handleClick = () => {
 
 .nav-text {
   font-family: var(--font-body);
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;

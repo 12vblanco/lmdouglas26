@@ -5,7 +5,7 @@ export const heroSlides = [
     title: "GHARANTIA'S GUARDIAN",
     titleLines: ["GHARANTIA'S", "GUARDIAN"],
     subtitle: "Chronicles of the Endless War - Book 1",
-    description: "The epic fantasy debut from LM Douglas. \nAncient powers are rising. Forgotten oaths will be answered.",
+    description: "A war between gods is coming, and Gharantia stands in its path. As prophetic dreams and mysterious strangers signal the end of peace, Princess Melane and her guardian Criterious must uncover the truth before it’s too late.",
     ctaText: "Buy it now",
     ctaLink: "https://mybook.to/LKYaLA",
     bgImage: "/images/book1-bg.jpg",
@@ -19,21 +19,21 @@ export const heroSlides = [
     title: "THE ENDLESS WAR",
     titleLines: ["THE ENDLESS", "WAR"],
     subtitle: "Chronicles of the Endless War - Book 2",
-    description: "The battle continues in this thrilling sequel. \nNew alliances form as darkness spreads across the realm.",
+    description: "Relationships fracture, new enemies rise, and the true cost of war is laid bare. But as their greatest adversary approaches, are Gharantia’s defenders ready to stand and fight?",
     ctaText: "Buy it now",
     ctaLink: "https://mybook.to/bXI2",
     bgImage: "/images/book2-bg.jpg",
     overlayColor: "rgba(21, 21, 21, 0.01)",
     bookCover: "/images/book2-cover.png",
     textColor: "white",
-    alignment: "right"
+    alignment: "left"
   },
     {
      id: 3,
     title: "GHARANTIA'S FATE",
     titleLines: ["GHARANTIA'S", "FATE"],
     subtitle: "Chronicles of the Endless War - Book 3",
-    description: "The final chapter approaches. Will the guardians prevail or will darkness consume the world forever?",
+    description: "With the city in ruins, the royal household is pulled in different directions; Criterious tending to the people, Melane looking north, and Queen Velardis consumed by a perilous obsession behind palace walls. As Xuren’s chilling message lingers, a darker conflict begins to unfold.",
     ctaText: "Coming Soon",
     ctaLink: "#",
     bgImage: "/images/book3-bg.jpg",
@@ -47,14 +47,14 @@ export const heroSlides = [
     title: "Davga",
     titleLines: ["THE ENDLESS", "WAR"],
     subtitle: "An Endless War novella",
-    description: "The battle continues in this thrilling sequel. \nNew alliances form as darkness spreads across the realm.",
+    description: "A prisoner with no memory. Davga’s dormant magic stirs with the arrival of a mysterious stranger. As past and power collide, one question remains—who is the real Davga Tranfe’er, and what destiny awaits him?",
     ctaText: "Coming Soon",
     ctaLink: "#",
     bgImage: "/images/book4-bg.jpg",
     overlayColor: "rgba(21, 21, 21, 0.2)",
     bookCover: "/images/book4-cover.png",
     textColor: "white",
-    alignment: "right"
+    alignment: "left"
   }]
   
 
@@ -85,7 +85,7 @@ export const chroniclesBooks = [
   },
   {
     id: 4,
-    title: "EMPIRE OF SHADOWS \n Book 3",
+    title: "GHARANTIA'S FATE \n Book 3",
     flatCover: "/images/book3-flat.jpg",
     status: "coming-soon",
     ctaText: "Coming soon",
@@ -93,7 +93,7 @@ export const chroniclesBooks = [
   },
    {
     id: 5,
-    title: "EMPIRE OF SHADOWS \n Book 3",
+    title: "DAVGA \n An Endless War novella",
     flatCover: "/images/book4-flat.jpg",
     status: "coming-soon",
     ctaText: "Coming soon",
