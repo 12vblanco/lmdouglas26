@@ -3,12 +3,14 @@
   <section class="map-section" id="map">
     <div class="container">
       <div class="map-container" ref="mapContainer">
+        <!-- Map Image -->
         <img 
           src="../../assets/images/map-bw.jpeg" 
           alt="World Map of The Endless War"
           class="map-image"
         />
         
+        <!-- Interactive Points -->
         <div class="map-interactive-layer">
           <div 
             v-for="point in mapPoints" 
@@ -21,7 +23,7 @@
             :style="{
               top: point.position.top,
               left: point.position.left,
-              zIndex: activePoint === point.id ? 2000 : 10
+              zIndex: activePoint === point.id ? 10000 : 10
             }"
             @mouseenter="activatePoint(point)"
             @mouseleave="deactivatePoint"
@@ -29,6 +31,7 @@
           >
             <div class="point-circle"></div>
             
+            <!-- Tooltip -->
             <div 
               v-if="activePoint === point.id" 
               class="map-tooltip"
@@ -38,7 +41,7 @@
                 <h3 class="tooltip-title">{{ point.title }}</h3>
                 <p class="tooltip-description">{{ point.description }}</p>
                 
-                <!-- Image - full width, auto height, no crop -->
+                <!-- Full-width image (if exists) -->
                 <div v-if="hasImage(point)" class="tooltip-image-container">
                   <img 
                     :src="point.image" 
@@ -47,12 +50,16 @@
                   />
                 </div>
                 
-                <span class="tooltip-type">{{ point.type }}</span>
+                <!-- Type badge – only show if type is not empty -->
+                <span v-if="point.type && point.type.trim() !== ''" class="tooltip-type">
+                  {{ point.type }}
+                </span>
               </div>
             </div>
           </div>
         </div>
         
+        <!-- Map Overlay -->
         <div class="map-overlay">
           <h2 class="map-title">The Gharantia Realm</h2>
           <p class="map-description">
@@ -69,6 +76,7 @@ import { ref } from 'vue';
 import { mapPoints } from './heroData.js';
 
 const activePoint = ref(null);
+const mapContainer = ref(null);
 
 const activatePoint = (point) => {
   activePoint.value = point.id;
@@ -78,29 +86,66 @@ const deactivatePoint = () => {
   activePoint.value = null;
 };
 
+// Check if point has a valid image (non-empty string)
 const hasImage = (point) => {
   return !!(point.image && point.image.trim && point.image.trim());
 };
 
+// Determine tooltip position – always centered horizontally, intelligently vertical
 const getTooltipStyle = (position) => {
-  const topPercent = parseFloat(position.top);
-  const isInBottomHalf = topPercent > 50;
-  
   const tooltipWidth = 380;
-  const tooltipHeight = 320;
+  const tooltipHeight = 360; // Slightly increased to account for images
+  const pointX = parseFloat(position.left);
+  const pointY = parseFloat(position.top);
   
-  let tooltipLeft = -tooltipWidth / 2;
-  let tooltipTop = isInBottomHalf ? -tooltipHeight - 30 : 80;
+  // Horizontal centering (center the tooltip on the point)
+  let leftOffset = -tooltipWidth / 2;
   
-  if (topPercent < 15) {
-    tooltipLeft = 0;
-  } else if (topPercent > 85) {
-    tooltipLeft = -tooltipWidth;
+  // Prevent tooltip from overflowing the map container horizontally
+  if (mapContainer.value) {
+    const containerWidth = mapContainer.value.clientWidth;
+    const pointXpx = (pointX / 100) * containerWidth;
+    const tooltipLeftPx = pointXpx + leftOffset;
+    const minLeftPx = 10;
+    const maxLeftPx = containerWidth - tooltipWidth - 10;
+    
+    if (tooltipLeftPx < minLeftPx) {
+      leftOffset = minLeftPx - pointXpx;
+    } else if (tooltipLeftPx > maxLeftPx) {
+      leftOffset = maxLeftPx - pointXpx;
+    }
+  } else {
+    // Fallback using percentage bounds
+    const minLeftPercent = 5;
+    const maxLeftPercent = 95;
+    const leftPercentAfterOffset = pointX + (leftOffset / (tooltipWidth / 100));
+    if (leftPercentAfterOffset < minLeftPercent) {
+      leftOffset = (minLeftPercent - pointX) * (tooltipWidth / 100);
+    } else if (leftPercentAfterOffset + (tooltipWidth / (mapContainer.value?.clientWidth || 1000) * 100) > maxLeftPercent) {
+      leftOffset = (maxLeftPercent - pointX) * (tooltipWidth / 100) - tooltipWidth;
+    }
+  }
+  
+  // Vertical positioning: prefer above if point is in lower half (y > 45), else below
+  // Use 45% threshold to ensure tooltip doesn't cross into next section
+  let topOffset;
+  let isAbove = pointY > 45;
+  if (isAbove) {
+    topOffset = -tooltipHeight - 20;
+  } else {
+    topOffset = 40;
+  }
+  
+  // Edge correction: if near top, flip to below; if near bottom, flip to above
+  if (isAbove && pointY < 12) {
+    topOffset = 40;
+  } else if (!isAbove && pointY > 85) {
+    topOffset = -tooltipHeight - 20;
   }
   
   return {
-    top: `${tooltipTop}px`,
-    left: `${tooltipLeft}px`
+    top: `${topOffset}px`,
+    left: `${leftOffset}px`
   };
 };
 </script>
@@ -111,21 +156,27 @@ const getTooltipStyle = (position) => {
   background: var(--white);
   color: var(--black);
   position: relative;
-  overflow: hidden;
+  z-index: 10; /* Lower than tooltip, but establishes stacking context */
+  overflow: visible;
 }
 
 .container {
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 2rem;
+  overflow: visible;
 }
 
+/* Ensure tooltips are not clipped and have highest stacking context */
 .map-container {
   position: relative;
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
   border-radius: 12px;
+  overflow: visible !important;
+  z-index: 100; /* Creates new stacking context */
+  isolation: isolate; /* Further ensures isolation */
 }
 
 .map-image {
@@ -142,6 +193,7 @@ const getTooltipStyle = (position) => {
   left: 0;
   width: 100%;
   height: 100%;
+  overflow: visible;
 }
 
 .map-point {
@@ -151,8 +203,9 @@ const getTooltipStyle = (position) => {
   transition: all 0.3s ease;
 }
 
+/* High z-index when active */
 .map-point.active {
-  z-index: 2000 !important;
+  z-index: 10000 !important;
 }
 
 /* Default gold dot */
@@ -210,33 +263,27 @@ const getTooltipStyle = (position) => {
 .map-point:hover .point-circle {
   transform: scale(1.2);
 }
-
 .map-point:hover .point-circle {
   box-shadow: 0 0 20px rgba(223, 172, 41, 0.5);
 }
-
 .map-point.has-image:hover .point-circle {
   box-shadow: 0 0 20px rgba(255, 102, 102, 0.6);
 }
-
 .map-point.active .point-circle {
   transform: scale(1.2);
 }
-
 .map-point.active .point-circle {
   box-shadow: 0 0 20px rgba(223, 172, 41, 0.5);
 }
-
 .map-point.has-image.active .point-circle {
   box-shadow: 0 0 20px rgba(255, 102, 102, 0.6);
 }
-
 .map-point:hover .point-circle::after,
 .map-point.active .point-circle::after {
   animation: none;
 }
 
-/* Tooltip styling */
+/* Tooltip styling – extremely high z-index to appear above all sections */
 .map-tooltip {
   position: absolute;
   width: 380px;
@@ -244,7 +291,7 @@ const getTooltipStyle = (position) => {
   border-radius: 8px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
   border: 2px solid var(--gold-dark);
-  z-index: 100;
+  z-index: 999999 !important; /* Ensures it's above everything */
   animation: fadeIn 0.3s ease;
 }
 
@@ -260,7 +307,7 @@ const getTooltipStyle = (position) => {
 }
 
 .tooltip-content {
-  padding: 1.25rem; /* slightly reduced padding to give more room for image */
+  padding: 1.25rem;
   display: flex;
   flex-direction: column;
 }
@@ -284,9 +331,9 @@ const getTooltipStyle = (position) => {
   text-align: left;
 }
 
-/* Image container - full width, auto height, no cropping */
+/* Full-width image container – spans entire tooltip width */
 .tooltip-image-container {
-  width: calc(100% + 2.5rem); /* extend to full tooltip width (accounting for padding) */
+  width: calc(100% + 2.5rem);
   margin-left: -1.25rem;
   margin-right: -1.25rem;
   margin-bottom: 1rem;
@@ -300,10 +347,11 @@ const getTooltipStyle = (position) => {
   width: 100%;
   height: auto;
   display: block;
-  object-fit: contain; /* ensures no cropping, maintains aspect ratio */
-  max-height: none; /* allow full natural height */
+  object-fit: contain;
+  max-height: none;
 }
 
+/* Type badge – only shown when type is not empty */
 .tooltip-type {
   display: inline-block;
   padding: 0.25rem 0.75rem;
@@ -359,16 +407,13 @@ const getTooltipStyle = (position) => {
   pointer-events: none;
 }
 
-/* Responsive */
+/* Responsive: hide interactive dots on mobile */
 @media (max-width: 768px) {
   .map-section {
     padding: 4rem 0;
   }
   .container {
     padding: 0 1rem;
-  }
-  .map-container {
-    border-radius: 8px;
   }
   .map-point {
     display: none;
@@ -408,6 +453,7 @@ const getTooltipStyle = (position) => {
   }
 }
 
+/* Optional decorative border */
 .map-container::before {
   content: '';
   position: absolute;
@@ -425,6 +471,7 @@ const getTooltipStyle = (position) => {
   z-index: -1;
   opacity: 0.3;
   transition: opacity 0.3s ease;
+  pointer-events: none;
 }
 
 .map-container:hover::before {
