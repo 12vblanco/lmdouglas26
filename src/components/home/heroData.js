@@ -231,26 +231,26 @@ export const mapPoints = [
   {
     id: 16,
     title: "The Barren Flats",
-    description: "A wide stretch of prairie, sparsely vegetated and unoccupied by humans, yet rich in wildlife. The flats rise toward the Barren Mountains and cliffs, forming a rugged natural barrier that protects the interior from any approach from the western seas.",
+    description: "",
     image: "",
     position: { top: '62%', left: '15%' },
-    type: "Grasslands"
+    type: ""
   },
   {
     id: 17,
     title: "Davga",
-    description: "Port of Rakul (RAH-kul)Said to mark the northernmost reach of Lord Xuren’s power, this frozen port is little more than ice, stone, and chains. Its prison swallows political enemies and the unworthy alike, and none who are sent here are ever heard from again.",
+    description: "",
     image: davga,
     position: { top: '1.6%', left: '78%' },
-    type: "port"
+    type: ""
   },
   {
     id: 18,
     title: "Pallemina",
-    description: "The capital of the realm of Gharantia. The palace sits upon a hill, with the Obsivanta mountain range rising behind it and the great port spread out before it. Within the palace grounds stands the Black Tower, housing the famed Red Stone. Queen Velardis rules her twelve duchies from this central seat of power, assisted by her cousin Melane and Melane’s husband, Criterious, the Guardian.",
+    description: "",
     image: pallemina,
     position: { top: '48%', left: '68%' },
-    type: "city"
+    type: ""
   },
   {
     id: 19,
