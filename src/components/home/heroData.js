@@ -255,7 +255,7 @@ export const mapPoints = [
   {
     id: 19,
     title: "Queen Velardis and Lord Xuren",
-    description: "",
+    description: "The throne is hers, but the game is his",
     image: queen,
     position: { top: '57%', left: '66%' },
     type: ""
