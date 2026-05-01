@@ -16,7 +16,7 @@
             <h2 class="logo-name">LM DOUGLAS</h2>
             <h3 class="logo-subtitle">Chronicles of the Endless War</h3>
             <p class="author-description">
-              L.M. Douglas is a Scottish author based in Edinburgh. She's been crafting stories in her head since childhood. It just took a few decades of real life before she could put them on the page.
+              L.M. Douglas is a Scottish author based in Edinburgh. Her love for writing began in childhood, but adulting got in the way of her passion until she found the time and inspiration to bring her own magical world to life during the COVID-19 lockdowns. She balances her time between managing a busy pub with her husband, taking care of her teenage son & cat Eddy, and crafting her intricate tales.
             </p>
           </div>
         </div>
