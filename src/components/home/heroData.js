@@ -169,7 +169,7 @@ export const mapPoints = [
     description: "A coastal duchy of Gharantia, wealthy through maritime trade and the realm’s largest exporter of salt. Its inland regions are fertile and tightly controlled, with ownership restricted to a small number of powerful families.",
     image: "",
     position: { top: '56.9%', left: '90%' },
-    type: "city"
+    type: "Duchy"
   },
   {
     id: 8,
@@ -177,7 +177,7 @@ export const mapPoints = [
     description: "An eastern duchy of Gharantia, once the first kingdom in the region, with its original seat at the ancient walled city of Cross Lands. Renowned for marble quarries and fertile lands. Capital: Callamerta (KAL-ah-mer-tah).",
     image: "",
     position: { top: '65.9%', left: '90%' },
-    type: "city"
+    type: "Homestead"
   },
   {
     id: 9,
@@ -193,7 +193,7 @@ export const mapPoints = [
     description: "Childhood home of Pilt, nestled in a remote valley high in the mountains. The surrounding area is dotted with flocks, tended by the neighbouring shepherds.",
     image: "",
     position: { top: '72%', left: '64%' },
-    type: "town"
+    type: "Homestead"
   },
   {
     id: 12,
@@ -218,7 +218,7 @@ export const mapPoints = [
     description: "The largest duchy of Gharantia after the Gharantian lands themselves, crescent-shaped along the western coast. Rich from trade, it contains the natural port of Rameel and maintains a strong fleet. Ruled by Lord Mikarf, who exercises careful control over the coast and neighbouring territories to secure his duchy’s wealth.",
     image: "",
         position: { top: '62%', left: '32%' },
-    type: "tower"
+    type: "Homestead"
   },
   {
     id: 15,
@@ -226,15 +226,15 @@ export const mapPoints = [
     description: "A cluster of territories bordering Obsilye to the east and the Barren Flats to the west. Historically established by one of the queens as a buffer at the edge of the realm, the lands were granted to the region’s strongest clans, whose family names now identify the territories. The terrain is infertile, and the inhabitants are often nomadic, herding sheep and cattle across the rugged land.",
     image: "",
         position: { top: '67%', left: '25%' },
-    type: "Wasteland"
+    type: "Duchy"
   },
   {
     id: 16,
     title: "The Barren Flats",
-    description: "",
+    description: "A wide stretch of prairie, sparsely vegetated and unoccupied by humans, yet rich in wildlife. The flats rise toward the Barren Mountains and cliffs, forming a rugged natural barrier that protects the interior from any approach from the western seas.",
     image: "",
     position: { top: '62%', left: '15%' },
-    type: ""
+    type: "Grasslands"
   },
   {
     id: 17,
