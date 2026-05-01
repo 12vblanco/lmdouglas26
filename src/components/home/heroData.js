@@ -20,14 +20,14 @@ export const heroSlides = [
   },
   {
     id: 2,
-    title: "THE ENDLESS WAR",
-    titleLines: ["THE ENDLESS", "WAR"],
+    title: "GHARANTIA'S FURY",
+    titleLines: ["GHARANTIA'S", "FURY"],
     subtitle: "Chronicles of the Endless War - Book 2",
     description: "Relationships fracture, new enemies rise, and the true cost of war is laid bare. But as their greatest adversary approaches, are Gharantia’s defenders ready to stand and fight?",
     ctaText: "Buy it now",
     ctaLink: "https://mybook.to/bXI2",
     bgImage: "/images/book2-bg.jpg",
-    overlayColor: "rgba(21, 21, 21, 0.01)",
+    overlayColor: "rgba(21, 21, 21, 0.5)",
     bookCover: "/images/book2-cover.png",
     textColor: "white",
     alignment: "left"
@@ -49,7 +49,7 @@ export const heroSlides = [
   {
     id: 4,
     title: "Davga",
-    titleLines: ["THE ENDLESS", "WAR"],
+    titleLines: ["DAVGA"],
     subtitle: "An Endless War novella",
     description: "A prisoner with no memory. Davga’s dormant magic stirs with the arrival of a mysterious stranger. As past and power collide, one question remains—who is the real Davga Tranfe’er, and what destiny awaits him?",
     ctaText: "Coming Soon",

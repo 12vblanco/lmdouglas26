@@ -81,7 +81,7 @@
 
 <script setup>
 import { ref } from 'vue';
-import ClockIcon from '../svgs/ClockIcon.vue'; // Add this import
+import ClockIcon from '../svgs/ClockIcon.vue';
 
 const props = defineProps({
   slide: {
