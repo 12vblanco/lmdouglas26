@@ -255,7 +255,7 @@ export const mapPoints = [
   {
     id: 19,
     title: "Queen Velardis and Lord Xuren",
-    description: "The capital of the realm of Gharantia. The palace sits upon a hill, with the Obsivanta mountain range rising behind it and the great port spread out before it. Within the palace grounds stands the Black Tower, housing the famed Red Stone. Queen Velardis rules her twelve duchies from this central seat of power, assisted by her cousin Melane and Melane’s husband, Criterious, the Guardian.",
+    description: "",
     image: queen,
     position: { top: '57%', left: '66%' },
     type: "city"
