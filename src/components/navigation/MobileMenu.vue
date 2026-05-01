@@ -144,7 +144,7 @@ const handleLogoClick = () => {
 .mobile-close {
   background: none;
   border: none;
-  color: var(--color-white);
+  color: var(--white);
   font-size: 2rem;
   cursor: pointer;
   width: 40px;
@@ -201,7 +201,7 @@ const handleLogoClick = () => {
   font-size: 1.125rem;
   font-weight: 600;
   letter-spacing: 0.05em;
-  color: var(--color-white);
+  color: var(--white);
   opacity: 0.8;
   transition: all 0.3s ease;
   flex: 1;
@@ -251,7 +251,7 @@ const handleLogoClick = () => {
   padding: 0.75rem 1.5rem;
   border-radius: var(--border-radius);
   background: rgba(255, 255, 255, 0.03);
-  color: var(--color-white);
+  color: var(--white);
   transition: all 0.3s ease;
 }
 

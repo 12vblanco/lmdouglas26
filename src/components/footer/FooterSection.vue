@@ -96,7 +96,7 @@ export default {
 <style scoped>
 .site-footer {
   background-color: #000;
-  color: #fff;
+  color: var(--white);
   position: relative;
   min-height: 400px;
   padding: 60px 0 20px;
@@ -173,7 +173,7 @@ export default {
 }
 
 .logo-name {
-  color: #fff;
+  color: var(--white);
   font-size: 2.5rem;
   font-weight: 700;
   letter-spacing: 3px;
@@ -192,7 +192,7 @@ export default {
 }
 
 .author-description {
-  color: #fff;
+  color: var(--white);
   text-align: left;  
   line-height: 1.6;
   font-size: 1.1rem;
@@ -251,7 +251,7 @@ export default {
 }
 
 .nav-links a {
-  color: #fff;
+  color: var(--white);
   text-decoration: none;
   font-size: 0.95rem;
   transition: color 0.3s ease;
@@ -265,7 +265,7 @@ export default {
 
 .contact-email {
   display: block;
-  color: #fff;
+  color: var(--white);
   text-decoration: none;
   font-size: 1rem;
   margin-bottom: 25px;

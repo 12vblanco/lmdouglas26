@@ -176,7 +176,7 @@ const checkAllLoaded = () => {
   letter-spacing: -.1px;
   margin-bottom: .2rem;
   /* text-transform: uppercase; */
-  color: #fff;
+  color: var(--white);
   white-space: pre-line;
 }
 
@@ -209,7 +209,7 @@ const checkAllLoaded = () => {
   max-width: 600px;
   font-weight: 700;
   margin-top: .2rem;
-  color: #fff;
+  color: var(--white);
   margin-left: auto;
   margin-right: auto;
 }
