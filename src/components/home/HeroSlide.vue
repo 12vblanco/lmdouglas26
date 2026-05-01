@@ -171,11 +171,11 @@ const checkAllLoaded = () => {
 
 .hero-subtitle {
   font-family: var(--font-body);
-  font-size: 1.4rem;
-  font-weight: 500;
+  font-size: 1.5rem;
+  font-weight: 700;
   letter-spacing: -.1px;
   margin-bottom: .2rem;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   color: #fff;
   white-space: pre-line;
 }
