@@ -25,12 +25,12 @@ export const navItems = [
     href: '/blog',
     isRoute: true
   },
-  {
-    id: 'about',
-    label: 'About',
-    href: '/about',
-    isRoute: true
-  }
+  // {
+  //   id: 'about',
+  //   label: 'About',
+  //   href: '/about',
+  //   isRoute: true
+  // }
 ];
 
 export const socialLinks = [

@@ -29,7 +29,7 @@
               <h4 class="section-title">Navigation</h4>
               <ul class="nav-links">
                 <li><router-link to="/">HOME</router-link></li>
-                <li><router-link to="/about">ABOUT</router-link></li>
+                <!-- <li><router-link to="/about">ABOUT</router-link></li> -->
                 <li><router-link to="/map">MAP</router-link></li>
                 <li><router-link to="/blog">BLOG</router-link></li>
               </ul>
