@@ -177,7 +177,7 @@ export const mapPoints = [
     description: "An eastern duchy of Gharantia, once the first kingdom in the region, with its original seat at the ancient walled city of Cross Lands. Renowned for marble quarries and fertile lands. Capital: Callamerta (KAL-ah-mer-tah).",
     image: "",
     position: { top: '65.9%', left: '90%' },
-    type: "Homestead"
+    type: "Duchy"
   },
   {
     id: 9,
@@ -218,7 +218,7 @@ export const mapPoints = [
     description: "The largest duchy of Gharantia after the Gharantian lands themselves, crescent-shaped along the western coast. Rich from trade, it contains the natural port of Rameel and maintains a strong fleet. Ruled by Lord Mikarf, who exercises careful control over the coast and neighbouring territories to secure his duchy’s wealth.",
     image: "",
         position: { top: '62%', left: '32%' },
-    type: "Homestead"
+    type: "Duchy"
   },
   {
     id: 15,
