@@ -109,8 +109,7 @@ const handleCtaClick = (link, status) => {
   color: var(--black);
   position: relative;
   overflow: hidden;
-  border-top: var(--grey) 1px solid;
-  border-bottom: var(--grey) 1px solid;  
+  
   max-width: 94%;
   margin: 0 auto;
 }

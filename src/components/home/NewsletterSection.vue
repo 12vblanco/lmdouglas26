@@ -291,7 +291,7 @@ const handleSubmit = async () => {
   font-family: var(--font-body);
   font-size: 1rem;
   padding: 0.75rem 1rem;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: var(--black) 3px solid;
   border-radius: 4px;
   background: var(--white);
   color: var(--black);
@@ -356,7 +356,7 @@ const handleSubmit = async () => {
   background: var(--white);
   padding: 1rem 2.5rem;
   border-radius: 4px;
-  border: 1px solid var(--black);
+  border: var(--black) 3px solid;
   cursor: pointer;
   transition: all 0.3s ease;
   width: fit-content;

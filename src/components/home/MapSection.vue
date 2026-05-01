@@ -180,6 +180,7 @@ const getTooltipStyle = (position) => {
   height: auto;
   display: block;
   object-fit: cover;
+  border: var(--grey) 3px solid;
 }
 
 .map-interactive-layer {
