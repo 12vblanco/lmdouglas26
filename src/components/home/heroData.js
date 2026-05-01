@@ -239,7 +239,7 @@ export const mapPoints = [
   {
     id: 17,
     title: "Davga",
-    description: "",
+    description: "He was not meant to stay hidden forever.",
     image: davga,
     position: { top: '1.6%', left: '78%' },
     type: ""
@@ -247,7 +247,7 @@ export const mapPoints = [
   {
     id: 18,
     title: "Pallemina",
-    description: "",
+    description: "Two natures, one will",
     image: pallemina,
     position: { top: '48%', left: '68%' },
     type: ""
