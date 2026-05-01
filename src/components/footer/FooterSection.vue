@@ -56,7 +56,7 @@
         <p class="copyright">
           &copy; LM DOUGLAS {{ currentYear }} - 
           <a 
-            href="https://victorblanco.com" 
+            href="https://victorblancoweb.com" 
             target="_blank" 
             rel="noopener noreferrer"
             class="portfolio-link"
