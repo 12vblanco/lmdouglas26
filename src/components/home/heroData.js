@@ -13,7 +13,7 @@ export const heroSlides = [
     ctaText: "Buy it now",
     ctaLink: "https://mybook.to/LKYaLA",
     bgImage: "/images/book1-bg.jpg",
-    overlayColor: "rgba(21, 21, 21, 0)",
+    overlayColor: "rgba(21, 21, 21,.3 )",
     bookCover: "/images/book1-cover.png",
     textColor: "white",
     alignment: "left"

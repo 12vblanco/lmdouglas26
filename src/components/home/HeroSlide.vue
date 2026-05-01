@@ -292,8 +292,8 @@ const checkAllLoaded = () => {
 }
 
 .book-cover-image {
-  max-width: 400px;
-  max-height: 400px;
+  max-width: 460px;
+  max-height: 460px;
   width: 100%;
   height: auto;
   border-radius: 8px;
