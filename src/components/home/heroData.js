@@ -258,6 +258,6 @@ export const mapPoints = [
     description: "",
     image: queen,
     position: { top: '57%', left: '66%' },
-    type: "city"
+    type: ""
   }
 ];
