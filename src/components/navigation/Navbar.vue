@@ -1,25 +1,14 @@
-<!-- src/components/navigation/Navbar.vue -->
 <template>
   <nav class="navbar" :class="{ 'navbar-scrolled': isScrolled }">
     <div class="container navbar-container">
-      <!-- Logo -->
       <Logo @logo-click="handleLogoClick" />
-      
-      <!-- Desktop Navigation -->
-      <DesktopNav 
-        :nav-items="navItems" 
+      <DesktopNav
+        :nav-items="navItems"
         :active-item="activeItem"
         @nav-click="handleNavClick"
       />
-      
-      <!-- Burger Menu Toggle -->
-      <BurgerMenu 
-        :is-open="isMobileOpen"
-        @toggle="toggleMobileMenu"
-      />
-      
-      <!-- Mobile Menu -->
-      <MobileMenu 
+      <BurgerMenu :is-open="isMobileOpen" @toggle="toggleMobileMenu" />
+      <MobileMenu
         :is-open="isMobileOpen"
         :nav-items="navItems"
         :social-links="socialLinks"
@@ -28,80 +17,57 @@
         @nav-click="handleNavClick"
         @logo-click="handleLogoClick"
       />
-      
-      <!-- Decorative Elements -->
-      <div class="navbar-decoration">
-        <div class="nav-decoration-dots">
-          <span class="decoration-dot" v-for="n in 3" :key="n"></span>
-        </div>
-      </div>
     </div>
   </nav>
 </template>
 
 <script setup>
-import { onMounted, onUnmounted, ref } from 'vue'
+import { onMounted, onUnmounted, ref, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import BurgerMenu from './BurgerMenu.vue'
 import DesktopNav from './DesktopNav.vue'
 import Logo from './Logo.vue'
 import MobileMenu from './MobileMenu.vue'
 import { navItems, socialLinks } from './navigation.js'
 
-// Reactive states
+const router = useRouter()
+const route = useRoute()
+
 const isScrolled = ref(false)
 const isMobileOpen = ref(false)
 const activeItem = ref('home')
 
-// Handle scroll
+// Update activeItem based on current route
+const updateActiveItem = () => {
+  if (route.path === '/') {
+    // on home page, check hash
+    if (route.hash === '#books') activeItem.value = 'books'
+    else if (route.hash === '#map') activeItem.value = 'map'
+    else activeItem.value = 'home'
+  } else if (route.path === '/blog') {
+    activeItem.value = 'blog'
+  }
+}
+
+watch(() => route.fullPath, updateActiveItem, { immediate: true })
+
 const handleScroll = () => {
   isScrolled.value = window.scrollY > 50
 }
 
 const handleNavClick = (itemId) => {
-  activeItem.value = itemId
-  console.log('Clicked:', itemId) // Debug
-  
-  const navItem = navItems.find(item => item.id === itemId)
-  console.log('Nav item:', navItem) // Debug
-  
-  if (navItem && navItem.isRoute) {
-    // Navigate to route
-    window.location.href = navItem.href
-  } else {
-    // Scroll to section
-    const element = document.getElementById(itemId)
-    console.log('Element found:', element) // Debug
-    
-    if (element) {
-      const navbarHeight = 90
-      let offsetTop
-      
-      // Special offset for map and books
-      if (itemId === 'map') {
-        offsetTop = element.offsetTop - navbarHeight + 240
-      } else if (itemId === 'books') {
-        offsetTop = element.offsetTop - navbarHeight + 780
-      } else {
-        offsetTop = element.offsetTop - navbarHeight - 20
-      }
-      
-      console.log('Scrolling to:', offsetTop) // Debug
-      window.scrollTo({ top: offsetTop, behavior: 'smooth' })
-    }
+  const item = navItems.find(i => i.id === itemId)
+  if (item) {
+    router.push(item.href)
   }
-  
-  if (isMobileOpen.value) {
-    closeMobileMenu()
-  }
+  if (isMobileOpen.value) closeMobileMenu()
 }
 
 const handleLogoClick = () => {
-  activeItem.value = 'home'
-  console.log('Navigating to home')
-  closeMobileMenu()
+  router.push('/')
+  if (isMobileOpen.value) closeMobileMenu()
 }
 
-// Mobile menu functions
 const toggleMobileMenu = () => {
   isMobileOpen.value = !isMobileOpen.value
   updateBodyScroll()
@@ -113,14 +79,9 @@ const closeMobileMenu = () => {
 }
 
 const updateBodyScroll = () => {
-  if (isMobileOpen.value) {
-    document.body.style.overflow = 'hidden'
-  } else {
-    document.body.style.overflow = ''
-  }
+  document.body.style.overflow = isMobileOpen.value ? 'hidden' : ''
 }
 
-// Lifecycle hooks
 onMounted(() => {
   window.addEventListener('scroll', handleScroll)
   handleScroll()
@@ -133,7 +94,7 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-/* Navbar Base */
+/* existing styles unchanged – keep as is */
 .navbar {
   position: fixed;
   top: 0;
@@ -143,8 +104,8 @@ onUnmounted(() => {
   z-index: 1000;
   padding: 1.4rem 0 1rem 0;
   background: var(--white);
-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);}
-
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+}
 .navbar-container {
   display: flex;
   align-items: center;
@@ -152,7 +113,6 @@ box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);}
   position: relative;
 }
 
-/* Decorative Elements */
 .navbar-decoration {
   position: absolute;
   bottom: -1px;

@@ -1,37 +1,29 @@
-// src/components/navigation/navigation.js
-
 export const navItems = [
   {
     id: 'home',
     label: 'Home',
-    href: '#home',
-    isRoute: false
+    href: '/#home',    // hash link
+    isRoute: true      // treat as route change
   },
   {
     id: 'books',
     label: 'Books',
-    href: '#books',
-    isRoute: false
+    href: '/#books',
+    isRoute: true
   },
   {
     id: 'map',
     label: 'Map',
-    href: '#map',
-    isRoute: false
+    href: '/#map',
+    isRoute: true
   },
   {
     id: 'blog',
     label: 'Blog',
     href: '/blog',
     isRoute: true
-  },
-  // {
-  //   id: 'about',
-  //   label: 'About',
-  //   href: '/about',
-  //   isRoute: true
-  // }
-];
+  }
+]
 
 export const socialLinks = [
   {
@@ -52,4 +44,4 @@ export const socialLinks = [
     icon: 'instagram',
     url: 'https://instagram.com/lmdouglasauthor'
   }
-];
+]

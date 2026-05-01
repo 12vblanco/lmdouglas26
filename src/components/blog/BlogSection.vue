@@ -9,10 +9,10 @@
       title="LM Douglas Author Blog"
     ></iframe>
   </section>
+
 </template>
 
 <script setup>
-// No script needed for this component
 </script>
 
 <style scoped>
@@ -22,6 +22,8 @@
   background: var(--black);
   position: relative;
   overflow: hidden;
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
 #blogIframe {

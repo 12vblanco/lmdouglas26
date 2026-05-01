@@ -2,7 +2,7 @@
 <template>
   <li class="nav-item">
     <a 
-      :href="item.path" 
+      :href="item.href" 
       class="nav-link"
       :class="{ 'nav-link-active': active }"
       @click.prevent="handleClick"
@@ -35,6 +35,7 @@ const handleClick = () => {
 </script>
 
 <style scoped>
+/* Keep your existing styles exactly as they are */
 .nav-item {
   position: relative;
 }
