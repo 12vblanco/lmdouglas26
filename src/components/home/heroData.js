@@ -1,3 +1,7 @@
+import davga from '../../assets/images/Davga_HR.jpg';
+import pallemina from '../../assets/images/Pallemina_HR.jpg';
+import queen from '../../assets/images/Queen-Velardis-and-Lord-Xuren.jpg';
+
 // @/data/heroData.js
 export const heroSlides = [
   {
@@ -231,5 +235,29 @@ export const mapPoints = [
     image: "",
     position: { top: '62%', left: '15%' },
     type: "Grasslands"
+  },
+  {
+    id: 17,
+    title: "Davga",
+    description: "Port of Rakul (RAH-kul)Said to mark the northernmost reach of Lord Xuren’s power, this frozen port is little more than ice, stone, and chains. Its prison swallows political enemies and the unworthy alike, and none who are sent here are ever heard from again.",
+    image: davga,
+    position: { top: '1.6%', left: '78%' },
+    type: "port"
+  },
+  {
+    id: 18,
+    title: "Pallemina",
+    description: "The capital of the realm of Gharantia. The palace sits upon a hill, with the Obsivanta mountain range rising behind it and the great port spread out before it. Within the palace grounds stands the Black Tower, housing the famed Red Stone. Queen Velardis rules her twelve duchies from this central seat of power, assisted by her cousin Melane and Melane’s husband, Criterious, the Guardian.",
+    image: pallemina,
+    position: { top: '48%', left: '68%' },
+    type: "city"
+  },
+  {
+    id: 19,
+    title: "Queen Velardis and Lord Xuren",
+    description: "The capital of the realm of Gharantia. The palace sits upon a hill, with the Obsivanta mountain range rising behind it and the great port spread out before it. Within the palace grounds stands the Black Tower, housing the famed Red Stone. Queen Velardis rules her twelve duchies from this central seat of power, assisted by her cousin Melane and Melane’s husband, Criterious, the Guardian.",
+    image: queen,
+    position: { top: '57%', left: '66%' },
+    type: "city"
   }
 ];
