@@ -46,6 +46,7 @@
             <template v-else>
               <a 
                 :href="book.ctaLink" 
+                target="_blank"
                 class="book-cta"
                 :aria-label="`${book.ctaText} - ${book.title}`"
                 @click.prevent="handleCtaClick(book.ctaLink, book.status)"
@@ -97,7 +98,7 @@ const handleCtaClick = (link, status) => {
     }
   } else {
     // It's a regular link - navigate normally
-    window.location.href = link;
+    window.open(link, '_blank', 'noopener,noreferrer');
   }
 };
 </script>
