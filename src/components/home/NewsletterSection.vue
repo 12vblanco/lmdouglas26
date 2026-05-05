@@ -8,7 +8,6 @@
           <div class="book-cover-container">
             <img 
               src="../../assets/images/book3-cover.jpg"
-              
               alt="Gharantia's Shadow - Free Novella"
               class="book-cover-image"
             />
@@ -130,25 +129,20 @@ const handleSubmit = async () => {
   isError.value = false;
 
   try {
-    // Netlify form submission
-    const formData = new FormData();
-    formData.append('form-name', 'newsletter');
-    formData.append('name', form.name);
-    formData.append('email', form.email);
-    formData.append('agreeToTerms', form.agreeToTerms);
-
-    // Netlify expects a POST request to the current page
     const response = await fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams(formData).toString()
+      body: new URLSearchParams({
+        'form-name': 'newsletter',
+        name: form.name,
+        email: form.email,
+        agreeToTerms: form.agreeToTerms,
+      }).toString()
     });
 
     if (response.ok) {
       submitMessage.value = 'Thank you! Check your email for the novella download link.';
       isError.value = false;
-      
-      // Reset form
       form.name = '';
       form.email = '';
       form.agreeToTerms = false;
@@ -242,7 +236,6 @@ const handleSubmit = async () => {
 
 .newsletter-title {
   font-family: var(--font-body);
-  /* font-size: 2.5rem; */
   line-height: 1.2;
   letter-spacing: -3%;
   margin-bottom: .4rem;
