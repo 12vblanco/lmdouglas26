@@ -405,8 +405,8 @@ const getTooltipStyle = (position) => {
   .map-description { font-size: 1rem; }
 }
 @media (max-width: 480px) {
-  .map-section { padding: 3rem 0; }
-  .map-overlay { padding: 1rem; }
+  .map-section { padding: 0; }
+  .map-overlay { padding: rem; }
   .map-title { font-size: 1.5rem; }
 }
 

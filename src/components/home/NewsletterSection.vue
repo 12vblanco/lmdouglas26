@@ -451,7 +451,7 @@ const handleSubmit = async () => {
 
 @media (max-width: 768px) {
   .newsletter-section {
-    padding: 4rem 0;
+    padding: 1rem 0;
   }
   
   .container {

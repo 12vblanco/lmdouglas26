@@ -8,11 +8,10 @@
   >
     <div class="mobile-menu" @click.stop>
       <div class="mobile-menu-header">
-        <Logo @logo-click="handleLogoClick" />
-        <button class="mobile-close" @click="closeMenu" aria-label="Close menu">
-          <span class="close-icon">×</span>
-        </button>
-      </div>
+  <Logo :light="true" @logo-click="handleLogoClick" />  <!-- ← add :light="true" here -->
+  <button class="mobile-close" @click="closeMenu" aria-label="Close menu">
+  </button>
+</div>
       
       <ul class="mobile-nav-list">
         <li 
@@ -46,7 +45,7 @@
             rel="noopener noreferrer"
           >
             <span class="social-icon">{{ social.icon }}</span>
-            <span class="social-label">{{ social.label }}</span>
+            <!-- <span class="social-label">{{ social.label }}</span> -->
           </a>
         </div>
       </div>
@@ -56,7 +55,6 @@
 
 <script setup>
 import { defineEmits, defineProps } from 'vue'
-import Logo from './Logo.vue'
 
 const props = defineProps({
   isOpen: {
@@ -105,11 +103,14 @@ const handleLogoClick = () => {
   opacity: 0;
   visibility: hidden;
   transition: all 0.4s ease;
+  max-height: 90vh;
+  top: 90px;
 }
 
 .mobile-overlay-open {
   opacity: 1;
   visibility: visible;
+  
 }
 
 .mobile-menu {
@@ -187,7 +188,7 @@ const handleLogoClick = () => {
 
 .mobile-nav-link:hover,
 .mobile-nav-link-active {
-  background: rgba(223, 172, 41, 0.1);
+  background: rgba(223, 172, 41, 1);
   transform: translateX(10px);
 }
 

@@ -52,7 +52,7 @@ export const heroSlides = [
     titleLines: ["DAVGA"],
     subtitle: "An Endless War novella",
     description: "A prisoner with no memory. Davga’s dormant magic stirs with the arrival of a mysterious stranger. As past and power collide, one question remains—who is the real Davga Tranfe’er, and what destiny awaits him?",
-    ctaText: "Pre Order!",
+    ctaText: "Pre Order",
     ctaLink: "https://shorturl.at/anuOB",
     bgImage: "/images/book4-bg.jpg",
     overlayColor: "rgba(21, 21, 21, 0.2)",
@@ -100,7 +100,7 @@ export const chroniclesBooks = [
     title: "DAVGA \n An Endless War novella",
     flatCover: "/images/book4-flat.jpg",
     status: "available",
-    ctaText: "Pre Order!",
+    ctaText: "Pre Order",
     ctaLink: "https://shorturl.at/anuOB"
   },
   //   {

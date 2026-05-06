@@ -356,24 +356,66 @@ const checkAllLoaded = () => {
   .hero-title {
     font-size: clamp(2.5rem, 8vw, 4rem);
   }
+
+  .hero-subtitle {
+    font-size: 1.2rem
+  }
   
   .hero-description {
-    font-size: 1.125rem;
+    font-size: 16px;
   }
   
   .btn-hero {
-    width: 150px;
+    width: 180px;
     height: 50px;
-    padding: 0.875rem 1.5rem;
+    padding: 0.875rem 1.2rem;
     font-size: 1rem;
   }
   
   .book-cover-image {
-    max-width: 250px;
+    max-width: 360px;
+    margin-top: 1rem;
   }
   
   .hero-container {
     padding: 2rem 1rem 0 1rem;
+  }
+}
+@media (max-width: 400px) {
+
+  .hero-slide {
+  position: relative;
+  height: fit-content;
+}
+  .hero-title {
+    font-size: clamp(2.5rem, 8vw, 4rem);
+  }
+
+  .hero-subtitle {
+    font-size: 1.2rem
+  }
+  
+  .hero-description {
+    font-size: 16px;
+  }
+  
+  .btn-hero {
+    width: 180px;
+    height: 50px;
+    padding: 0.875rem 1.2rem;
+    font-size: 1rem;
+  }
+  
+  .book-cover-image {
+    max-width: 360px;
+    margin-top: 1rem;
+  }
+  
+  .hero-container {
+    padding: 2rem 1rem 0 1rem;
+    margin-top: 30px;
+    min-height: fit-content;
+    margin-bottom: 5rem;
   }
 }
 </style>

@@ -366,14 +366,24 @@ export default {
     height: 60px;
   }
   
-  .corner-tl,
-  .corner-tr,
-  .corner-bl,
+  .corner-tl {
+    top: 14px;
+    left: 6px;
+
+  }
+  .corner-tr {
+    top: 14px;
+    right: 6px;
+  }
+  
+  .corner-bl {
+    bottom: 6px;
+    left: 6px;
+  }
+  
   .corner-br {
-    top: 8px;
-    left: 8px;
-    right: 8px;
-    bottom: 8px;
+    bottom: 6px;
+    right: 6px;
   }
 }
 </style>

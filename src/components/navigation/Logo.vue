@@ -129,7 +129,10 @@ const handleClick = () => {
 
 @media (max-width: 480px) {
   .logo-text {
-    display: none; /* Hide text on very small screens */
+    display: block; 
+    /* color: white; */
+    margin-left: 1rem;
+    font-size: 28px;
   }
   
   .logo-link {

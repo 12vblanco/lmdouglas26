@@ -370,12 +370,16 @@ const handleCtaClick = (link, status) => {
 }
 
 @media (max-width: 480px) {
+
+  .chronicles-section{
+    padding-top: 0;
+  }
   .container {
     padding: 0 0.5rem;
   }
   
   .book-cover-container {
-    padding: 1rem 0.5rem 0;
+    padding: 0;
     min-height: 260px;
   }
   
@@ -384,7 +388,12 @@ const handleCtaClick = (link, status) => {
   }
   
   .book-cover-image {
-    max-width: 160px;
+    max-width: 360px;
+  }
+
+  .section-title{
+    max-width: 80%;
+    margin: 0 auto;
   }
 }
 </style>

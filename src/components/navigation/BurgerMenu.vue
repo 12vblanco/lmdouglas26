@@ -40,7 +40,7 @@ const toggleMenu = () => {
   position: relative;
   z-index: 1002;
   width: 40px;
-  height: 30px;
+  height: 40px;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
@@ -49,7 +49,7 @@ const toggleMenu = () => {
 .burger-line {
   display: block;
   width: 30px;
-  height: 3px;
+  height: 4px;
   background: var(--black);
   transition: all 0.3s ease;
   border-radius: 2px;
@@ -57,11 +57,11 @@ const toggleMenu = () => {
 
 /* When burger is open, lines turn to X */
 .burger-open .burger-line {
-  background: var(--white);
+  background: var(--black);
 }
 
 .burger-line-1 {
-  transform: rotate(45deg) translate(7px, 7px);
+  transform: rotate(45deg) translate(4px, 4px);
 }
 
 .burger-line-2 {
@@ -69,7 +69,7 @@ const toggleMenu = () => {
 }
 
 .burger-line-3 {
-  transform: rotate(-45deg) translate(7px, -7px);
+  transform: rotate(-45deg) translate(4px, -4px);
 }
 
 /* Responsive */
