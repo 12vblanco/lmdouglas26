@@ -61,7 +61,7 @@
             rel="noopener noreferrer"
             class="portfolio-link"
           >
-            Website Victor Blanco
+            Website by Victor Blanco
           </a>
         </p>
       </div>
