@@ -11,21 +11,24 @@
 
       <!-- Books Grid -->
       <div class="books-grid">
-        <div 
-          v-for="book in books" 
-          :key="book.id" 
+        <div
+          v-for="book in books"
+          :key="book.id"
           class="book-card"
           :class="book.status"
         >
           <!-- Book Cover Image -->
           <div class="book-cover-container">
-            <img 
-              :src="book.flatCover" 
+            <img
+              :src="book.flatCover"
               :alt="book.title"
               class="book-cover-image"
-              :class="{ 'grayscale': book.status === 'coming-soon' || book.status === 'pre-order' }"
+              :class="{
+                grayscale:
+                  book.status === 'coming-soon' || book.status === 'pre-order',
+              }"
             />
-            
+
             <!-- Status Badge -->
             <div class="book-status" :class="book.status">
               {{ formatStatus(book.status) }}
@@ -35,7 +38,7 @@
           <!-- Book Info -->
           <div class="book-info">
             <p class="book-title">{{ book.title }}</p>
-            
+
             <!-- CTA Button - Different for Coming Soon -->
             <template v-if="book.status === 'coming-soon'">
               <button class="book-cta disabled" disabled>
@@ -44,8 +47,8 @@
               </button>
             </template>
             <template v-else>
-              <a 
-                :href="book.ctaLink" 
+              <a
+                :href="book.ctaLink"
                 target="_blank"
                 class="book-cta"
                 :aria-label="`${book.ctaText} - ${book.title}`"
@@ -63,42 +66,42 @@
 </template>
 
 <script setup>
-import ClockIcon from '../svgs/ClockIcon.vue';
-import { chroniclesBooks } from './heroData.js';
+import ClockIcon from "../svgs/ClockIcon.vue";
+import { chroniclesBooks } from "./heroData.js";
 
 const books = chroniclesBooks;
 
 const formatStatus = (status) => {
   const statusMap = {
-    'available': 'Available Now',
-    'get-it-free': 'Get It Free',
-    'coming-soon': 'Coming Soon',
-    'pre-order': 'Pre-order Now'
+    available: "Available Now",
+    "get-it-free": "Get It Free",
+    "coming-soon": "Coming Soon",
+    "pre-order": "Pre-order Now",
   };
   return statusMap[status] || status;
 };
 
 const handleCtaClick = (link, status) => {
-  if (status === 'coming-soon') return; // Disabled
-  
-  if (link.startsWith('#')) {
+  if (status === "coming-soon") return; // Disabled
+
+  if (link.startsWith("#")) {
     // It's an anchor link - scroll to section
     const targetId = link.substring(1);
     const targetElement = document.getElementById(targetId);
-    
+
     if (targetElement) {
       // Smooth scroll to the element
-      targetElement.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
+      targetElement.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
       });
-      
+
       // Update URL hash without jumping
       window.history.pushState(null, null, link);
     }
   } else {
     // It's a regular link - navigate normally
-    window.open(link, '_blank', 'noopener,noreferrer');
+    window.open(link, "_blank", "noopener,noreferrer");
   }
 };
 </script>
@@ -110,7 +113,7 @@ const handleCtaClick = (link, status) => {
   color: var(--black);
   position: relative;
   overflow: hidden;
-  
+
   max-width: 94%;
   margin: 0 auto;
 }
@@ -132,7 +135,7 @@ const handleCtaClick = (link, status) => {
   font-size: 2.2rem;
   line-height: 1.1;
   letter-spacing: -0.02em;
-  margin-bottom: .1rem;
+  margin-bottom: 0.1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -181,10 +184,11 @@ const handleCtaClick = (link, status) => {
 .book-cover-image {
   width: 100%;
   height: 100%;
+  object-fit: contain;
   border-radius: 6px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   transition: all 0.4s ease;
-  transform-origin: center center; 
+  transform-origin: center center;
 }
 
 .book-card:hover .book-cover-image {
@@ -214,12 +218,20 @@ const handleCtaClick = (link, status) => {
 }
 
 .book-status.available {
-  background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-light) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--gold-dark) 0%,
+    var(--gold-light) 100%
+  );
   color: var(--black);
 }
 
 .book-status.get-it-free {
-  background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-light) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--gold-dark) 0%,
+    var(--gold-light) 100%
+  );
   color: var(--black);
 }
 
@@ -229,7 +241,11 @@ const handleCtaClick = (link, status) => {
 }
 
 .book-status.pre-order {
-  background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-light) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--gold-dark) 0%,
+    var(--gold-light) 100%
+  );
   color: var(--black);
 }
 
@@ -247,7 +263,7 @@ const handleCtaClick = (link, status) => {
   font-size: 1.1rem;
   line-height: 1.3;
   font-weight: 600;
-  text-align: center;  
+  text-align: center;
   margin-top: 0.8rem;
   margin-bottom: 0.8rem;
   color: var(--black);
@@ -270,7 +286,7 @@ const handleCtaClick = (link, status) => {
   font-size: 1.125rem;
   color: var(--gold-dark);
   background: var(--black);
-  padding: .6rem 0.4rem;
+  padding: 0.6rem 0.4rem;
   border-radius: 8px;
   border: 1px solid var(--gold-dark);
   transition: all 0.3s ease;
@@ -281,13 +297,17 @@ const handleCtaClick = (link, status) => {
 }
 
 .book-cta::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-light) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--gold-dark) 0%,
+    var(--gold-light) 100%
+  );
   opacity: 0;
   transition: opacity 0.3s ease;
   z-index: -1;
@@ -336,11 +356,11 @@ const handleCtaClick = (link, status) => {
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
   }
-  
+
   .book-cover-container {
     min-height: 280px;
   }
-  
+
   .book-cover-image {
     max-width: 180px;
   }
@@ -351,16 +371,16 @@ const handleCtaClick = (link, status) => {
     grid-template-columns: 1fr;
     max-width: 300px;
   }
-  
+
   .section-title {
     font-size: 1.75rem;
   }
-  
+
   .book-title {
     font-size: 1.125rem;
     min-height: 2.8rem;
   }
-  
+
   .book-cta {
     font-size: 0.875rem;
     padding: 0.625rem 1.25rem;
@@ -370,28 +390,28 @@ const handleCtaClick = (link, status) => {
 }
 
 @media (max-width: 480px) {
-
-  .chronicles-section{
+  .chronicles-section {
     padding-top: 0;
   }
   .container {
     padding: 0 0.5rem;
   }
-  
+
   .book-cover-container {
     padding: 0;
     min-height: 260px;
   }
-  
+
   .book-info {
     padding: 1rem;
   }
-  
+
   .book-cover-image {
+    width: auto;
     max-width: 360px;
   }
 
-  .section-title{
+  .section-title {
     max-width: 80%;
     margin: 0 auto;
   }
