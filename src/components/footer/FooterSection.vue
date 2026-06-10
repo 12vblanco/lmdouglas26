@@ -5,7 +5,7 @@
     <FooterCorner class="corner corner-tr" :rotation="90" />
     <FooterCorner class="corner corner-bl" :rotation="270" />
     <FooterCorner class="corner corner-br" :rotation="180" />
-    
+
     <!-- Main Footer Content -->
     <div class="footer-content">
       <!-- Top Row -->
@@ -16,11 +16,16 @@
             <h2 class="logo-name">LM DOUGLAS</h2>
             <h3 class="logo-subtitle">Chronicles of the Endless War</h3>
             <p class="author-description">
-              L.M. Douglas is a Scottish author based in Edinburgh. Her love for writing began in childhood, but adulting got in the way of her passion until she found the time and inspiration to bring her own magical world to life during the COVID-19 lockdowns. She balances her time between managing a busy pub with her husband, taking care of her teenage son & cat Eddy, and crafting her intricate tales.
+              L.M. Douglas is a Scottish author based in Edinburgh. Her love for
+              writing began in childhood, but adulting got in the way of her
+              passion until she found the time and inspiration to bring her own
+              magical world to life during the COVID-19 lockdowns. She balances
+              her time between managing a busy pub with her husband, taking care
+              of her teenage son & cat Eddy, and crafting her intricate tales.
             </p>
           </div>
         </div>
-        
+
         <!-- Right Column -->
         <div class="footer-right">
           <div class="right-columns">
@@ -34,15 +39,17 @@
                 <li><router-link to="/blog">BLOG</router-link></li>
               </ul>
             </div>
-            
+
             <!-- Contact Column -->
             <div class="contact-column">
               <h4 class="section-title">Contact</h4>
-              <a href="mailto:info@lmdouglas.com" class="contact-email">info@lmdouglas.com</a>
-              
+              <a href="mailto:info@lmdouglas.com" class="contact-email"
+                >info@lmdouglas.com</a
+              >
+
               <div class="social-links">
                 <FooterInstagram href="https://instagram.com/lmdouglas" />
-                <FacebookIcon href="https://facebook.com/lmdouglas" /> 
+                <FacebookIcon href="https://facebook.com/lmdouglas" />
                 <ThreadsIcon href="https://threads.net/@lmdouglas" />
                 <FooterTikTok href="https://tiktok.com/@lmdouglas" />
               </div>
@@ -50,14 +57,14 @@
           </div>
         </div>
       </div>
-      
+
       <!-- Bottom Row (Copyright) -->
       <div class="footer-bottom">
         <p class="copyright">
-          &copy; LM DOUGLAS {{ currentYear }} - 
-          <a 
-            href="https://victorblancoweb.com" 
-            target="_blank" 
+          &copy; LM DOUGLAS {{ currentYear }} -
+          <a
+            href="https://victorblancoweb.com"
+            target="_blank"
             rel="noopener noreferrer"
             class="portfolio-link"
           >
@@ -70,27 +77,27 @@
 </template>
 
 <script>
-import FooterCorner from '../svgs/CornerDesign.vue'
-import FacebookIcon from '../svgs/FacebookIcon.vue'
-import FooterTikTok from '../svgs/FooterTikTok.vue'
-import FooterInstagram from '../svgs/InstagramIcon.vue'
-import ThreadsIcon from '../svgs/ThreadsIcon.vue'
+import FooterCorner from "../svgs/CornerDesign.vue";
+import FacebookIcon from "../svgs/FacebookIcon.vue";
+import FooterTikTok from "../svgs/FooterTikTok.vue";
+import FooterInstagram from "../svgs/InstagramIcon.vue";
+import ThreadsIcon from "../svgs/ThreadsIcon.vue";
 
 export default {
-  name: 'SiteFooter',
+  name: "SiteFooter",
   components: {
     FooterCorner,
     FooterInstagram,
     ThreadsIcon,
-    FacebookIcon,  
-    FooterTikTok
+    FacebookIcon,
+    FooterTikTok,
   },
   computed: {
     currentYear() {
-      return new Date().getFullYear()
-    }
-  }
-}
+      return new Date().getFullYear();
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -100,7 +107,7 @@ export default {
   position: relative;
   min-height: 400px;
   padding: 60px 0 20px;
-  border-top: 2px solid #D4AF37;
+  border-top: 2px solid #d4af37;
 }
 
 /* Corner SVG Styles */
@@ -163,12 +170,12 @@ export default {
   min-width: 300px;
   max-width: 500px;
   display: flex;
-  justify-content: center;  
+  justify-content: center;
   align-items: center;
 }
 
 .logo-section {
-  text-align: left;  
+  text-align: left;
   width: 100%;
 }
 
@@ -179,25 +186,25 @@ export default {
   letter-spacing: 3px;
   margin-bottom: 10px;
   text-transform: uppercase;
-  text-align: left;  
+  text-align: left;
 }
 
 .logo-subtitle {
-  color: #D4AF37;
+  color: #d4af37;
   font-size: 1.2rem;
   font-weight: 500;
   margin-bottom: 20px;
   letter-spacing: 1px;
-  text-align: left;  
+  text-align: left;
 }
 
 .author-description {
   color: var(--white);
-  text-align: left;  
+  text-align: left;
   line-height: 1.6;
   font-size: 1.1rem;
   max-width: 450px;
-  margin: 0;  
+  margin: 0;
   font-weight: 500;
 }
 
@@ -227,7 +234,7 @@ export default {
 }
 
 .section-title {
-  color: #D4AF37;
+  color: #d4af37;
   font-size: 1.1rem;
   font-weight: 600;
   margin-bottom: 20px;
@@ -260,7 +267,7 @@ export default {
 }
 
 .nav-links a:hover {
-  color: #D4AF37;
+  color: #d4af37;
 }
 
 .contact-email {
@@ -276,7 +283,7 @@ export default {
 }
 
 .contact-email:hover {
-  color: #D4AF37;
+  color: #d4af37;
 }
 
 .social-links {
@@ -295,14 +302,14 @@ export default {
 }
 
 .copyright {
-  color: #D4AF37;
+  color: #d4af37;
   font-size: 1rem;
   margin: 0;
   font-weight: 600;
 }
 
 .portfolio-link {
-  color: #D4AF37;
+  color: #d4af37;
   margin-left: 5px;
   transition: opacity 0.3s ease;
   font-size: 1rem;
@@ -320,70 +327,79 @@ export default {
   .footer-top {
     gap: 40px;
   }
-  
+
   .right-columns {
     gap: 40px;
   }
 }
 
 @media (max-width: 768px) {
+  .logo-section,
+  .logo-name,
+  .logo-subtitle,
+  .author-description {
+    text-align: center;
+  }
   .footer-top {
     flex-direction: column;
     gap: 40px;
   }
-  
+
   .footer-left,
   .footer-right {
     max-width: 100%;
   }
-  
+
   .right-columns {
     flex-direction: column;
     align-items: center;
     gap: 30px;
   }
-  
+
   .nav-column,
   .contact-column {
     text-align: center;
     max-width: 100%;
   }
-  
+
   .logo-name {
     font-size: 2rem;
   }
-  
+
   .logo-subtitle {
     font-size: 1rem;
   }
-  
+
   .author-description {
     font-size: 0.95rem;
   }
-  
+
   .corner {
     width: 60px;
     height: 60px;
   }
-  
+
   .corner-tl {
     top: 14px;
     left: 6px;
-
   }
   .corner-tr {
     top: 14px;
     right: 6px;
   }
-  
+
   .corner-bl {
     bottom: 6px;
     left: 6px;
   }
-  
+
   .corner-br {
     bottom: 6px;
     right: 6px;
+  }
+  .footer-bottom {
+    padding-top: 0.4rem;
+    padding-bottom: 1.4rem;
   }
 }
 </style>
