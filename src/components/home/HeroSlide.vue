@@ -412,7 +412,7 @@ const checkAllLoaded = () => {
 @media (max-width: 768px) {
   .alignment-left .hero-container,
   .alignment-right .hero-container {
-    gap: 1rem;
+    gap: 0rem;
   }
   .hero-container {
   }
