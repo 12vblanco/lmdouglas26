@@ -5,6 +5,22 @@ import queen from "../../assets/images/Queen-Velardis-and-Lord-Xuren.jpg";
 // @/data/heroData.js
 export const heroSlides = [
   {
+    id: 3,
+    title: "Davaga",
+    titleLines: ["DAVGA"],
+    subtitle: "An Endless War novella",
+    description:
+      "A prisoner with no memory. Davga’s dormant magic stirs with the arrival of a mysterious stranger. As past and power collide, one question remains—who is the real Davga Tranfe’er, and what destiny awaits him?",
+    ctaText: "Buy it now",
+    ctaLink: "https://shorturl.at/anuOB",
+    bgImage: "/images/book4-bg.jpg",
+    overlayColor: "rgba(21, 21, 21, 0.2)",
+    bookCover: "/images/book4-cover.png",
+    textColor: "white",
+    alignment: "left",
+    badge: "New Book",
+  },
+  {
     id: 1,
     title: "GHARANTIA'S GUARDIAN",
     titleLines: ["GHARANTIA'S", "GUARDIAN"],
@@ -34,21 +50,7 @@ export const heroSlides = [
     textColor: "white",
     alignment: "left",
   },
-  {
-    id: 3,
-    title: "Davga",
-    titleLines: ["DAVGA"],
-    subtitle: "An Endless War novella",
-    description:
-      "A prisoner with no memory. Davga’s dormant magic stirs with the arrival of a mysterious stranger. As past and power collide, one question remains—who is the real Davga Tranfe’er, and what destiny awaits him?",
-    ctaText: "Buy it now",
-    ctaLink: "https://shorturl.at/anuOB",
-    bgImage: "/images/book4-bg.jpg",
-    overlayColor: "rgba(21, 21, 21, 0.2)",
-    bookCover: "/images/book4-cover.png",
-    textColor: "white",
-    alignment: "left",
-  },
+
   {
     id: 4,
     title: "GHARANTIA'S FATE",

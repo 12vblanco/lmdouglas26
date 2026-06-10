@@ -1,33 +1,35 @@
 <!-- src/components/home/HeroSlide.vue -->
 <template>
-  <div 
-    class="hero-slide" 
+  <div
+    class="hero-slide"
     :style="{ backgroundImage: slideLoaded ? `url(${slide.bgImage})` : 'none' }"
-    :class="[`alignment-${slide.alignment}`, { 'loaded': slideLoaded }]"
+    :class="[`alignment-${slide.alignment}`, { loaded: slideLoaded }]"
   >
     <!-- Preload background image -->
-    <img 
-      :src="slide.bgImage" 
+    <img
+      :src="slide.bgImage"
       @load="handleBgLoad"
       @error="handleBgLoad"
-      style="display: none;"
+      style="display: none"
       alt=""
     />
-    
+
     <!-- Background Overlay -->
-    <div 
-      class="hero-overlay" 
+    <div
+      class="hero-overlay"
       :style="{ backgroundColor: slide.overlayColor }"
     ></div>
-    
+
     <div class="container hero-container">
       <!-- Text Content Column -->
       <div class="hero-content">
         <!-- Main Title -->
         <h1 class="hero-title">
-          <span v-for="(line, index) in slide.titleLines" 
-            :key="index" 
-            class="title-line">
+          <span
+            v-for="(line, index) in slide.titleLines"
+            :key="index"
+            class="title-line"
+          >
             {{ line }}
           </span>
         </h1>
@@ -42,10 +44,10 @@
           {{ slide.description }}
         </p>
 
-                <!-- CTA Button -->
+        <!-- CTA Button -->
         <template v-if="slide.ctaLink && slide.ctaLink !== '#'">
-          <a 
-            :href="slide.ctaLink" 
+          <a
+            :href="slide.ctaLink"
             target="_blank"
             rel="noopener noreferrer"
             class="btn-hero"
@@ -57,40 +59,47 @@
         <template v-else>
           <button class="btn-hero btn-disabled" disabled>
             {{ slide.ctaText }}
-                        <ClockIcon size="sm" />
-
+            <ClockIcon size="sm" />
           </button>
         </template>
       </div>
 
-      
-      
       <!-- Book Cover Column -->
       <div class="hero-book-cover">
-        <img 
-          :src="slide.bookCover" 
-          :alt="slide.title"
-          class="book-cover-image"
-          @load="handleCoverLoad"
-          @error="handleCoverLoad"
-        />
+        <div class="book-cover-wrapper">
+          <span v-if="slide.badge" class="hero-book-badge">
+            <span
+              v-for="(word, index) in slide.badge.split(' ')"
+              :key="index"
+              class="badge-word"
+              >{{ word }}</span
+            >
+          </span>
+          <img
+            :src="slide.bookCover"
+            :alt="slide.title"
+            class="book-cover-image"
+            @load="handleCoverLoad"
+            @error="handleCoverLoad"
+          />
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import ClockIcon from '../svgs/ClockIcon.vue';
+import { ref } from "vue";
+import ClockIcon from "../svgs/ClockIcon.vue";
 
 const props = defineProps({
   slide: {
     type: Object,
-    required: true
-  }
+    required: true,
+  },
 });
 
-const emit = defineEmits(['image-loaded']);
+const emit = defineEmits(["image-loaded"]);
 
 const bgLoaded = ref(false);
 const coverLoaded = ref(false);
@@ -109,7 +118,7 @@ const handleCoverLoad = () => {
 const checkAllLoaded = () => {
   if (bgLoaded.value && coverLoaded.value && !slideLoaded.value) {
     slideLoaded.value = true;
-    emit('image-loaded', props.slide.id);
+    emit("image-loaded", props.slide.id);
   }
 };
 </script>
@@ -173,8 +182,8 @@ const checkAllLoaded = () => {
   font-family: var(--font-body);
   font-size: 1.5rem;
   font-weight: 700;
-  letter-spacing: -.1px;
-  margin-bottom: .2rem;
+  letter-spacing: -0.1px;
+  margin-bottom: 0.2rem;
   /* text-transform: uppercase; */
   color: var(--white);
   white-space: pre-line;
@@ -194,7 +203,7 @@ const checkAllLoaded = () => {
 }
 
 .title-line {
-  background: linear-gradient(to bottom, #FFE607 0%, #F0B429 50%, #bd7500 100%); 
+  background: linear-gradient(to bottom, #ffe607 0%, #f0b429 50%, #bd7500 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -208,7 +217,7 @@ const checkAllLoaded = () => {
   line-height: 1.6;
   max-width: 600px;
   font-weight: 700;
-  margin-top: .2rem;
+  margin-top: 0.2rem;
   color: var(--white);
   margin-left: auto;
   margin-right: auto;
@@ -227,7 +236,7 @@ const checkAllLoaded = () => {
   font-size: 1.125rem;
   color: var(--gold-light);
   background: var(--black);
-  padding: .6rem 0cm;
+  padding: 0.6rem 0cm;
   border-radius: 8px;
   border: 1px solid var(--gold-light);
   transition: all 0.3s ease;
@@ -237,13 +246,17 @@ const checkAllLoaded = () => {
 }
 
 .btn-hero::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-light) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--gold-dark) 0%,
+    var(--gold-light) 100%
+  );
   opacity: 0;
   transition: opacity 0.3s ease;
   z-index: -1;
@@ -291,6 +304,13 @@ const checkAllLoaded = () => {
   background: transparent;
 }
 
+.book-cover-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  max-width: 460px;
+}
+
 .book-cover-image {
   max-width: 460px;
   max-height: 460px;
@@ -299,12 +319,49 @@ const checkAllLoaded = () => {
   border-radius: 8px;
   filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.6));
   transform: perspective(1000px) rotateY(-10deg) rotateX(5deg);
-  transition: 
+  transition:
     transform 0.5s ease,
     filter 0.5s ease;
   position: relative;
   z-index: 2;
   background: transparent;
+}
+
+.hero-book-badge {
+  position: absolute;
+  top: -0.9rem;
+  right: 70px;
+  z-index: 3;
+  width: 78px;
+  height: 78px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 50%;
+  font-family: var(--font-body);
+  font-weight: 900;
+  font-size: 1rem;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--black);
+  background: linear-gradient(
+    135deg,
+    var(--gold-dark) 0%,
+    var(--gold-light) 50%,
+    var(--gold-dark) 100%
+  );
+  border: 4px solid var(--gold-light);
+  box-shadow:
+    0 6px 14px rgba(0, 0, 0, 0.45),
+    inset 2px 2px 5px rgba(0, 0, 0, 0.5),
+    inset -2px -2px 5px rgba(255, 255, 255, 0.45);
+}
+
+.badge-word {
+  display: block;
 }
 
 .hero-book-cover:hover .book-cover-image {
@@ -338,15 +395,15 @@ const checkAllLoaded = () => {
     flex-direction: column;
     gap: 3rem;
   }
-  
+
   .hero-content {
-    order: 2; 
+    order: 2;
   }
-  
+
   .hero-book-cover {
     order: 1;
   }
-  
+
   .book-cover-image {
     max-width: 300px;
   }
@@ -358,59 +415,58 @@ const checkAllLoaded = () => {
   }
 
   .hero-subtitle {
-    font-size: 1.2rem
+    font-size: 1.2rem;
   }
-  
+
   .hero-description {
     font-size: 16px;
   }
-  
+
   .btn-hero {
     width: 180px;
     height: 50px;
     padding: 0.875rem 1.2rem;
     font-size: 1rem;
   }
-  
+
   .book-cover-image {
     max-width: 360px;
     margin-top: 1rem;
   }
-  
+
   .hero-container {
     padding: 2rem 1rem 0 1rem;
   }
 }
 @media (max-width: 400px) {
-
   .hero-slide {
-  position: relative;
-  height: fit-content;
-}
+    position: relative;
+    height: fit-content;
+  }
   .hero-title {
     font-size: clamp(2.5rem, 8vw, 4rem);
   }
 
   .hero-subtitle {
-    font-size: 1.2rem
+    font-size: 1.2rem;
   }
-  
+
   .hero-description {
     font-size: 16px;
   }
-  
+
   .btn-hero {
     width: 180px;
     height: 50px;
     padding: 0.875rem 1.2rem;
     font-size: 1rem;
   }
-  
+
   .book-cover-image {
     max-width: 360px;
     margin-top: 1rem;
   }
-  
+
   .hero-container {
     padding: 2rem 1rem 0 1rem;
     margin-top: 30px;
