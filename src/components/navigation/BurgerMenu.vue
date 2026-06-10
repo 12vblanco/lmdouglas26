@@ -1,8 +1,8 @@
 <!-- src/components/navigation/BurgerMenu.vue -->
 <template>
   <!-- Mobile Toggle Button -->
-  <button 
-    class="burger-toggle" 
+  <button
+    class="burger-toggle"
     @click="toggleMenu"
     :aria-label="isOpen ? 'Close menu' : 'Open menu'"
     :class="{ 'burger-open': isOpen }"
@@ -14,20 +14,20 @@
 </template>
 
 <script setup>
-import { defineEmits, defineProps } from 'vue'
+import { defineEmits, defineProps } from "vue";
 
 const props = defineProps({
   isOpen: {
     type: Boolean,
-    default: false
-  }
-})
+    default: false,
+  },
+});
 
-const emit = defineEmits(['toggle'])
+const emit = defineEmits(["toggle"]);
 
 const toggleMenu = () => {
-  emit('toggle')
-}
+  emit("toggle");
+};
 </script>
 
 <style scoped>
@@ -61,7 +61,7 @@ const toggleMenu = () => {
 }
 
 .burger-line-1 {
-  transform: rotate(45deg) translate(4px, 4px);
+  transform: rotate(45deg) translate(7px, 7px);
 }
 
 .burger-line-2 {
@@ -69,7 +69,7 @@ const toggleMenu = () => {
 }
 
 .burger-line-3 {
-  transform: rotate(-45deg) translate(4px, -4px);
+  transform: rotate(-45deg) translate(7px, -7px);
 }
 
 /* Responsive */
