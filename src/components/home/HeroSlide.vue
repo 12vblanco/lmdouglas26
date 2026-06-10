@@ -329,7 +329,7 @@ const checkAllLoaded = () => {
 
 .hero-book-badge {
   position: absolute;
-  top: -0.9rem;
+  top: -0.3rem;
   right: 70px;
   z-index: 3;
   width: 78px;
@@ -444,6 +444,10 @@ const checkAllLoaded = () => {
   .hero-container {
     padding: 2rem 1rem 0 1rem;
     min-height: fit-content;
+  }
+  .hero-book-badge {
+    top: 2rem;
+    right: 50px;
   }
 }
 @media (max-width: 400px) {
