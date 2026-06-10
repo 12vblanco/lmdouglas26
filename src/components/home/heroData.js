@@ -10,7 +10,7 @@ export const heroSlides = [
     titleLines: ["DAVGA"],
     subtitle: "An Endless War novella",
     description:
-      "A prisoner with no memory. Davga’s dormant magic stirs with the arrival of a mysterious stranger. As past and power collide, one question remains—who is the real Davga Tranfe’er, and what destiny awaits him?",
+      "A prisoner with no memory. Davga’s dormant magic stirs with the arrival of a mysterious stranger. As past and power collide, one question remains: who is the real Davga Tranfe’er, and what destiny awaits him?",
     ctaText: "Buy it now",
     ctaLink: "https://shorturl.at/anuOB",
     bgImage: "/images/book4-bg.jpg",
