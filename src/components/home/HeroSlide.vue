@@ -437,7 +437,7 @@ const checkAllLoaded = () => {
   }
 
   .book-cover-image {
-    max-width: 360px;
+    max-width: 320px;
     margin-top: 4rem;
   }
 
