@@ -410,6 +410,11 @@ const checkAllLoaded = () => {
 }
 
 @media (max-width: 768px) {
+  .alignment-left .hero-container,
+  .alignment-right .hero-container {
+    gap: 2rem;
+  }
+
   .hero-title {
     font-size: clamp(2.5rem, 8vw, 4rem);
   }
@@ -427,11 +432,12 @@ const checkAllLoaded = () => {
     height: 50px;
     padding: 0.875rem 1.2rem;
     font-size: 1rem;
+    margin-bottom: 3rem;
   }
 
   .book-cover-image {
     max-width: 360px;
-    margin-top: 1rem;
+    margin-top: 2rem;
   }
 
   .hero-container {

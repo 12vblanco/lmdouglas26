@@ -16,34 +16,35 @@
     <!-- Carousel Container -->
     <div class="carousel-container" :class="{ 'is-loading': isInitialLoading }">
       <!-- Slides -->
-      <div 
+      <div
         class="carousel-track"
         :style="{ transform: `translateX(-${currentIndex * 100}%)` }"
       >
-         <HeroSlide 
-    v-for="(slide, index) in slides"  
-    :key="slide.id" 
-    :slide="slide"
-    :slide-index="index"  
-    class="carousel-slide"
-    @image-loaded="handleImageLoaded(slide.id)"
-  />
+        <HeroSlide
+          v-for="(slide, index) in slides"
+          :key="slide.id"
+          :slide="slide"
+          :slide-index="index"
           class="carousel-slide"
           @image-loaded="handleImageLoaded(slide.id)"
         />
+        class="carousel-slide" @image-loaded="handleImageLoaded(slide.id)" />
       </div>
-      
+
       <!-- Indicators/Dots -->
       <div class="carousel-indicators">
-        <button 
-          v-for="(slide, index) in slides" 
+        <button
+          v-for="(slide, index) in slides"
           :key="slide.id"
           class="carousel-indicator"
           :class="{ active: currentIndex === index }"
           @click="goToSlide(index)"
           :aria-label="`Go to slide ${index + 1}`"
         >
-          <div class="indicator-progress" v-if="currentIndex === index && !isTransitioning"></div>
+          <div
+            class="indicator-progress"
+            v-if="currentIndex === index && !isTransitioning"
+          ></div>
         </button>
       </div>
     </div>
@@ -51,9 +52,9 @@
 </template>
 
 <script setup>
-import { onMounted, onUnmounted, ref } from 'vue';
-import { heroSlides } from './heroData.js';
-import HeroSlide from './HeroSlide.vue';
+import { onMounted, onUnmounted, ref } from "vue";
+import { heroSlides } from "./heroData.js";
+import HeroSlide from "./HeroSlide.vue";
 
 const slides = heroSlides;
 const currentIndex = ref(0);
@@ -64,7 +65,7 @@ let autoplayInterval;
 
 const handleImageLoaded = (slideId) => {
   loadedImages.value.add(slideId);
-  
+
   // Check if all initial images are loaded
   if (loadedImages.value.size === slides.length) {
     setTimeout(() => {
@@ -76,17 +77,17 @@ const handleImageLoaded = (slideId) => {
 
 const nextSlide = () => {
   if (isTransitioning.value) return;
-  
+
   const nextIndex = (currentIndex.value + 1) % slides.length;
   goToSlide(nextIndex);
 };
 
 const goToSlide = (index) => {
   if (isTransitioning.value || currentIndex.value === index) return;
-  
+
   isTransitioning.value = true;
   currentIndex.value = index;
-  
+
   // Wait for transition to complete
   setTimeout(() => {
     isTransitioning.value = false;
@@ -95,7 +96,7 @@ const goToSlide = (index) => {
 
 const startAutoplay = () => {
   stopAutoplay();
-  autoplayInterval = setInterval(nextSlide, 6000);
+  autoplayInterval = setInterval(nextSlide, 8000);
 };
 
 const stopAutoplay = () => {
@@ -180,7 +181,8 @@ onUnmounted(() => {
 }
 
 @keyframes sand-flow-top {
-  0%, 100% {
+  0%,
+  100% {
     border-top-width: 35px;
     opacity: 1;
   }
@@ -191,7 +193,8 @@ onUnmounted(() => {
 }
 
 @keyframes sand-flow-bottom {
-  0%, 100% {
+  0%,
+  100% {
     border-bottom-width: 32px;
     opacity: 0.95;
   }
@@ -202,7 +205,8 @@ onUnmounted(() => {
 }
 
 @keyframes sand-fall {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0;
     transform: translateX(-50%) translateY(-80%) scale(0.8);
   }
@@ -223,7 +227,8 @@ onUnmounted(() => {
 }
 
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.6;
   }
   50% {
@@ -321,22 +326,22 @@ onUnmounted(() => {
   .carousel-indicators {
     bottom: 1.5rem;
   }
-  
+
   .hourglass {
     width: 50px;
     height: 70px;
   }
-  
+
   .hourglass-top,
   .hourglass-bottom {
     border-left-width: 25px;
     border-right-width: 25px;
   }
-  
+
   .hourglass-top {
     border-top-width: 30px;
   }
-  
+
   .hourglass-bottom {
     border-bottom-width: 30px;
   }
