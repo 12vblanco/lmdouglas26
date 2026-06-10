@@ -433,7 +433,7 @@ const checkAllLoaded = () => {
     height: 50px;
     padding: 0.875rem 1.2rem;
     font-size: 1rem;
-    margin-bottom: 4rem;
+    margin-bottom: 5rem;
   }
 
   .book-cover-image {
