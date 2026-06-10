@@ -6,7 +6,7 @@
         <!-- Left Column: Book Cover -->
         <div class="newsletter-left">
           <div class="book-cover-container">
-            <img 
+            <img
               src="../../assets/images/book3-cover.jpg"
               alt="Gharantia's Shadow - Free Novella"
               class="book-cover-image"
@@ -21,13 +21,14 @@
             <h3 class="newsletter-title">
               Sign up to receive your copy of 'Gharantia's Shadow'
             </h3>
-            
+
             <p class="newsletter-subtitle">
-              Stay updated on new releases and book news. We respect your inbox. No spam, no sharing your email, ever.
+              Stay updated on new releases and book news. We respect your inbox.
+              No spam, no sharing your email, ever.
             </p>
 
             <!-- Netlify Form -->
-            <form 
+            <form
               class="newsletter-form"
               name="newsletter"
               method="POST"
@@ -38,7 +39,7 @@
               <!-- Netlify Form Hidden Fields -->
               <input type="hidden" name="form-name" value="newsletter" />
               <input type="hidden" name="bot-field" />
-              
+
               <!-- Form Fields -->
               <div class="form-group">
                 <label for="name" class="form-label">Full Name</label>
@@ -77,7 +78,8 @@
                   class="form-checkbox"
                 />
                 <label for="terms" class="form-checkbox-label">
-                  I agree to receive updates about new releases and book news. I understand I can unsubscribe at any time.
+                  I agree to receive updates about new releases and book news. I
+                  understand I can unsubscribe at any time.
                 </label>
               </div>
 
@@ -88,14 +90,19 @@
               </button>
 
               <!-- Success/Error Messages -->
-              <div v-if="submitMessage" class="form-message" :class="{ 'error': isError, 'success': !isError }">
+              <div
+                v-if="submitMessage"
+                class="form-message"
+                :class="{ error: isError, success: !isError }"
+              >
                 {{ submitMessage }}
               </div>
             </form>
 
             <!-- Privacy Note -->
             <p class="privacy-note">
-              🔒 Your information is secure. We never share your details with third parties.
+              🔒 Your information is secure. We never share your details with
+              third parties.
             </p>
           </div>
         </div>
@@ -105,53 +112,64 @@
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue';
+import { reactive, ref } from "vue";
 
 const form = reactive({
-  name: '',
-  email: '',
-  agreeToTerms: false
+  name: "",
+  email: "",
+  agreeToTerms: false,
 });
 
 const isSubmitting = ref(false);
-const submitMessage = ref('');
+const submitMessage = ref("");
 const isError = ref(false);
 
 const handleSubmit = async () => {
   if (!form.agreeToTerms) {
-    submitMessage.value = 'Please agree to the terms to continue.';
+    submitMessage.value = "Please agree to the terms to continue.";
     isError.value = true;
     return;
   }
 
   isSubmitting.value = true;
-  submitMessage.value = '';
+  submitMessage.value = "";
   isError.value = false;
 
-  try {
-    const response = await fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams({
-        'form-name': 'newsletter',
-        name: form.name,
-        email: form.email,
-        agreeToTerms: form.agreeToTerms,
-      }).toString()
-    });
+  const formBody = new URLSearchParams({
+    "form-name": "newsletter",
+    name: form.name,
+    email: form.email,
+    agreeToTerms: form.agreeToTerms,
+  }).toString();
 
-    if (response.ok) {
-      submitMessage.value = 'Thank you! Check your email for the novella download link.';
+  try {
+    // Run Netlify form capture and MailerLite subscription in parallel
+    const [netlifyRes, mlRes] = await Promise.all([
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: formBody,
+      }),
+      fetch("/api/newsletter-subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: formBody,
+      }),
+    ]);
+
+    if (netlifyRes.ok && mlRes.ok) {
+      submitMessage.value =
+        "Thank you! Check your email for the novella download link.";
       isError.value = false;
-      form.name = '';
-      form.email = '';
+      form.name = "";
+      form.email = "";
       form.agreeToTerms = false;
     } else {
-      throw new Error('Form submission failed');
+      throw new Error("Submission failed");
     }
   } catch (error) {
-    console.error('Form submission error:', error);
-    submitMessage.value = 'Something went wrong. Please try again.';
+    console.error("Form submission error:", error);
+    submitMessage.value = "Something went wrong. Please try again.";
     isError.value = true;
   } finally {
     isSubmitting.value = false;
@@ -238,12 +256,16 @@ const handleSubmit = async () => {
   font-family: var(--font-body);
   line-height: 1.2;
   letter-spacing: -3%;
-  margin-bottom: .4rem;
+  margin-bottom: 0.4rem;
   color: var(--black);
 }
 
 .newsletter-title .highlight {
-  background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-light) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--gold-dark) 0%,
+    var(--gold-light) 100%
+  );
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -306,7 +328,7 @@ const handleSubmit = async () => {
   display: flex;
   align-items: flex-start;
   gap: 0.75rem;
-  margin: .3rem 0;
+  margin: 0.3rem 0;
 }
 
 .form-checkbox {
@@ -360,13 +382,17 @@ const handleSubmit = async () => {
 }
 
 .submit-btn::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-light) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--gold-dark) 0%,
+    var(--gold-light) 100%
+  );
   opacity: 0;
   transition: opacity 0.3s ease;
   z-index: -1;
@@ -425,25 +451,25 @@ const handleSubmit = async () => {
     grid-template-columns: 1fr;
     gap: 3rem;
   }
-  
+
   .newsletter-left {
     order: 2;
   }
-  
+
   .newsletter-right {
     order: 1;
   }
-  
+
   .newsletter-content {
     max-width: 600px;
     margin: 0 auto;
     text-align: center;
   }
-  
+
   .submit-btn {
     margin: 0 auto;
   }
-  
+
   .book-cover-container {
     max-width: 300px;
   }
@@ -453,23 +479,23 @@ const handleSubmit = async () => {
   .newsletter-section {
     padding: 1rem 0;
   }
-  
+
   .container {
     padding: 0 1rem;
   }
-  
+
   .newsletter-title {
     font-size: 2rem;
   }
-  
+
   .newsletter-subtitle {
     font-size: 1rem;
   }
-  
+
   .form-checkbox-group {
     align-items: flex-start;
   }
-  
+
   .book-cover-image {
     transform: perspective(1000px) rotateY(0deg);
   }
@@ -479,12 +505,12 @@ const handleSubmit = async () => {
   .newsletter-title {
     font-size: 1.75rem;
   }
-  
+
   .submit-btn {
     width: 100%;
     min-width: auto;
   }
-  
+
   .form-input {
     padding: 0.625rem 0.875rem;
   }
