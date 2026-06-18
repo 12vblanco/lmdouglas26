@@ -2,12 +2,12 @@
 <template>
   <div
     class="hero-slide"
-    :style="{ backgroundImage: slideLoaded ? `url(${slide.bgImage})` : 'none' }"
+    :style="{ backgroundImage: slideLoaded ? `url(${bgSrc})` : 'none' }"
     :class="[`alignment-${slide.alignment}`, { loaded: slideLoaded }]"
   >
     <!-- Preload background image -->
     <img
-      :src="slide.bgImage"
+      :src="bgSrc"
       @load="handleBgLoad"
       @error="handleBgLoad"
       style="display: none"
@@ -77,6 +77,8 @@
           </span>
           <img
             :src="slide.bookCover"
+            :srcset="webpSrcset(slide.bookCover, [500, 1000])"
+            sizes="(max-width: 1024px) 80vw, 460px"
             :alt="slide.title"
             class="book-cover-image"
             @load="handleCoverLoad"
@@ -89,8 +91,10 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import ClockIcon from "../svgs/ClockIcon.vue";
+import { responsiveBg, webpSrcset } from "../../utils/webp.js";
+import { useViewportWidth } from "../../composables/useViewportWidth.js";
 
 const props = defineProps({
   slide: {
@@ -98,6 +102,11 @@ const props = defineProps({
     required: true,
   },
 });
+
+// Serve a viewport-appropriate .webp background to capable browsers
+// (smaller image on phones), original JPG as fallback.
+const vw = useViewportWidth();
+const bgSrc = computed(() => responsiveBg(props.slide.bgImage, vw.value));
 
 const emit = defineEmits(["image-loaded"]);
 

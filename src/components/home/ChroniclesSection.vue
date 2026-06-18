@@ -21,6 +21,8 @@
           <div class="book-cover-container">
             <img
               :src="book.flatCover"
+              :srcset="webpSrcset(book.flatCover, [400, 800])"
+              sizes="(max-width: 768px) 80vw, 250px"
               :alt="book.title"
               class="book-cover-image"
               :class="{
@@ -66,6 +68,7 @@
 </template>
 
 <script setup>
+import { webpSrcset } from "../../utils/webp.js";
 import ClockIcon from "../svgs/ClockIcon.vue";
 import { chroniclesBooks } from "./heroData.js";
 
@@ -77,6 +80,7 @@ const formatStatus = (status) => {
     "get-it-free": "Get It Free",
     "coming-soon": "Coming Soon",
     "pre-order": "Pre-order Now",
+    "new-release": "New Release!",
   };
   return statusMap[status] || status;
 };
@@ -209,7 +213,7 @@ const handleCtaClick = (link, status) => {
   padding: 0.2rem 0.6rem;
   border-radius: 12px;
   font-family: var(--font-body);
-  font-weight: 600;
+  font-weight: 900;
   font-size: 0.65rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -217,7 +221,8 @@ const handleCtaClick = (link, status) => {
   text-align: center;
 }
 
-.book-status.available {
+.book-status.available,
+.book-status.new-release {
   background: linear-gradient(
     135deg,
     var(--gold-dark) 0%,

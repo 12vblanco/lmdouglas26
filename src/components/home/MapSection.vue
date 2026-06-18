@@ -4,8 +4,10 @@
     <div class="container">
       <div class="map-container" ref="mapContainer">
         <!-- Map Image -->
-        <img 
-          src="../../assets/images/map-bw.jpeg" 
+        <img
+          :src="mapImageSrc"
+          :srcset="mapImageSrcset"
+          sizes="(max-width: 768px) 100vw, 1100px"
           alt="World Map of The Endless War"
           class="map-image"
         />
@@ -46,8 +48,8 @@
                 
                 <!-- Full-width image (if exists) -->
                 <div v-if="hasImage(point)" class="tooltip-image-container">
-                  <img 
-                    :src="point.image" 
+                  <img
+                    :src="pointImage(point)"
                     :alt="point.title"
                     class="tooltip-image"
                   />
@@ -77,9 +79,22 @@
 <script setup>
 import { ref } from 'vue';
 import { mapPoints } from './heroData.js';
+import { supportsWebp } from '../../utils/webp.js';
+import mapBwJpg from '../../assets/images/map-bw.jpeg';
+import mapBw600 from '../../assets/images/map-bw-600.webp';
+import mapBw1100 from '../../assets/images/map-bw-1100.webp';
 
 const activePoint = ref(null);
 const mapContainer = ref(null);
+
+// Original JPG as universal fallback; responsive .webp via srcset where supported.
+const mapImageSrc = mapBwJpg;
+const mapImageSrcset = supportsWebp()
+  ? `${mapBw600} 600w, ${mapBw1100} 1100w`
+  : undefined;
+// Tooltip art is hidden on mobile, so a single .webp (no responsive set) is fine.
+const pointImage = (point) =>
+  supportsWebp() && point.imageWebp ? point.imageWebp : point.image;
 
 const activatePoint = (point) => {
   activePoint.value = point.id;

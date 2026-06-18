@@ -1,6 +1,9 @@
 import davga from "../../assets/images/Davga_HR.jpg";
+import davgaWebp from "../../assets/images/Davga_HR.webp";
 import pallemina from "../../assets/images/Pallemina_HR.jpg";
+import palleminaWebp from "../../assets/images/Pallemina_HR.webp";
 import queen from "../../assets/images/Queen-Velardis-and-Lord-Xuren.jpg";
+import queenWebp from "../../assets/images/Queen-Velardis-and-Lord-Xuren.webp";
 
 // @/data/heroData.js
 export const heroSlides = [
@@ -70,6 +73,14 @@ export const heroSlides = [
 
 export const chroniclesBooks = [
   {
+    id: 5,
+    title: "DAVGA \n An Endless War novella",
+    flatCover: "/images/book4-flat.jpg",
+    status: "new-release",
+    ctaText: "Buy it now",
+    ctaLink: "https://shorturl.at/anuOB",
+  },
+  {
     id: 1,
     title: "GHARANTIA'S SHADOW \n Novella 1",
     flatCover: "/images/novella-Sh-cover.jpg",
@@ -93,14 +104,7 @@ export const chroniclesBooks = [
     ctaText: "Buy it now",
     ctaLink: "https://mybook.to/bXI2",
   },
-  {
-    id: 5,
-    title: "DAVGA \n An Endless War novella",
-    flatCover: "/images/book4-flat.jpg",
-    status: "available",
-    ctaText: "Buy it now",
-    ctaLink: "https://shorturl.at/anuOB",
-  },
+
   {
     id: 4,
     title: "GHARANTIA'S FATE \n Book 3",
@@ -263,6 +267,7 @@ export const mapPoints = [
     title: "Davga",
     description: "He was not meant to stay hidden forever.",
     image: davga,
+    imageWebp: davgaWebp,
     position: { top: "1.6%", left: "78%" },
     type: "",
   },
@@ -271,6 +276,7 @@ export const mapPoints = [
     title: "Pallemina",
     description: "Two natures, one will",
     image: pallemina,
+    imageWebp: palleminaWebp,
     position: { top: "48%", left: "68%" },
     type: "",
   },
@@ -279,6 +285,7 @@ export const mapPoints = [
     title: "Queen Velardis and Lord Xuren",
     description: "The throne is hers, but the game is his",
     image: queen,
+    imageWebp: queenWebp,
     position: { top: "57%", left: "66%" },
     type: "",
   },

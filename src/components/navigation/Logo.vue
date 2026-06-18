@@ -2,9 +2,9 @@
 <template>
   <div class="logo">
     <a href="/" class="logo-link" @click.prevent="handleClick">
-      <img 
-        src="/src/assets/images/logo-img.png" 
-        alt="LM Douglas Logo" 
+      <img
+        :src="logoSrc"
+        alt="LM Douglas Logo"
         class="logo-image"
       />
       <span class="logo-text">LM DOUGLAS</span>
@@ -13,6 +13,13 @@
 </template>
 
 <script setup>
+import { supportsWebp } from '../../utils/webp.js'
+import logoPng from '../../assets/images/logo-img.png'
+import logoWebp from '../../assets/images/logo-img.webp'
+
+// Imported asset (so it resolves in production) + .webp where supported.
+const logoSrc = supportsWebp() ? logoWebp : logoPng
+
 const emit = defineEmits(['logo-click'])
 
 const handleClick = () => {
