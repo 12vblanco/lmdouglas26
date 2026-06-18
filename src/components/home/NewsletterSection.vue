@@ -7,7 +7,9 @@
         <div class="newsletter-left">
           <div class="book-cover-container">
             <img
-              src="../../assets/images/book3-cover.jpg"
+              :src="coverSrc"
+              :srcset="coverSrcset"
+              sizes="(max-width: 1024px) 80vw, 400px"
               alt="Gharantia's Shadow - Free Novella"
               class="book-cover-image"
             />
@@ -113,6 +115,16 @@
 
 <script setup>
 import { reactive, ref } from "vue";
+import { supportsWebp } from "../../utils/webp.js";
+import book3CoverJpg from "../../assets/images/book3-cover.jpg";
+import book3Cover480 from "../../assets/images/book3-cover-480.webp";
+import book3Cover800 from "../../assets/images/book3-cover-800.webp";
+
+// Original JPG as universal fallback; responsive .webp via srcset where supported.
+const coverSrc = book3CoverJpg;
+const coverSrcset = supportsWebp()
+  ? `${book3Cover480} 480w, ${book3Cover800} 800w`
+  : undefined;
 
 const form = reactive({
   name: "",
