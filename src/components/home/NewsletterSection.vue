@@ -10,7 +10,7 @@
               :src="coverSrc"
               :srcset="coverSrcset"
               sizes="(max-width: 1024px) 80vw, 400px"
-              alt="Gharantia's Shadow - Free Novella"
+              alt="Davga — character art from The Endless War series"
               class="book-cover-image"
             />
             <div class="book-cover-glow"></div>
@@ -20,13 +20,12 @@
         <!-- Right Column: Newsletter Form -->
         <div class="newsletter-right">
           <div class="newsletter-content">
-            <h3 class="newsletter-title">
-              Sign up to receive your copy of 'Gharantia's Shadow'
-            </h3>
+            <h3 class="newsletter-title">The Endless War continues</h3>
 
             <p class="newsletter-subtitle">
-              Stay updated on new releases and book news. We respect your inbox.
-              No spam, no sharing your email, ever.
+              Sign-up to my newsletter to receive exclusive updates, behind the
+              scenes context, character spotlights, cover reveals, and launch
+              updates!
             </p>
 
             <!-- Netlify Form -->
@@ -87,7 +86,7 @@
 
               <!-- Submit Button -->
               <button type="submit" class="submit-btn" :disabled="isSubmitting">
-                <span v-if="!isSubmitting">Get Free Novella →</span>
+                <span v-if="!isSubmitting">Join my newsletter →</span>
                 <span v-else>Sending...</span>
               </button>
 
@@ -115,15 +114,15 @@
 
 <script setup>
 import { reactive, ref } from "vue";
+import davgaCover480 from "../../assets/images/Davga_HR-480.webp";
+import davgaCover800 from "../../assets/images/Davga_HR-800.webp";
+import davgaCoverJpg from "../../assets/images/Davga_HR.jpg";
 import { supportsWebp } from "../../utils/webp.js";
-import book3CoverJpg from "../../assets/images/book3-cover.jpg";
-import book3Cover480 from "../../assets/images/book3-cover-480.webp";
-import book3Cover800 from "../../assets/images/book3-cover-800.webp";
 
 // Original JPG as universal fallback; responsive .webp via srcset where supported.
-const coverSrc = book3CoverJpg;
+const coverSrc = davgaCoverJpg;
 const coverSrcset = supportsWebp()
-  ? `${book3Cover480} 480w, ${book3Cover800} 800w`
+  ? `${davgaCover480} 480w, ${davgaCover800} 800w`
   : undefined;
 
 const form = reactive({
@@ -508,8 +507,9 @@ const handleSubmit = async () => {
     align-items: flex-start;
   }
 
-  .book-cover-image {
-    transform: perspective(1000px) rotateY(0deg);
+  /* Hide the cover image on mobile — content-only newsletter form */
+  .newsletter-left {
+    display: none;
   }
 }
 
