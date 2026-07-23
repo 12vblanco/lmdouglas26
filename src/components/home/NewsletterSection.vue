@@ -79,8 +79,7 @@
                   class="form-checkbox"
                 />
                 <label for="terms" class="form-checkbox-label">
-                  I agree to receive updates about new releases and book news. I
-                  understand I can unsubscribe at any time.
+                  I agree to receive updates about new releases and book news.
                 </label>
               </div>
 
@@ -102,8 +101,8 @@
 
             <!-- Privacy Note -->
             <p class="privacy-note">
-              🔒 Your information is secure. We never share your details with
-              third parties.
+              🔒 We'll only use your email to send you our newsletter. No spam,
+              unsubscribe any time.
             </p>
           </div>
         </div>
