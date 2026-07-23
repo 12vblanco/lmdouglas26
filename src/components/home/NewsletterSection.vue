@@ -168,8 +168,7 @@ const handleSubmit = async () => {
     ]);
 
     if (netlifyRes.ok && mlRes.ok) {
-      submitMessage.value =
-        "Thank you! Check your email for the novella download link.";
+      submitMessage.value = "Thank you! You have subscribed to the newsletter";
       isError.value = false;
       form.name = "";
       form.email = "";
