@@ -80,14 +80,14 @@ export const chroniclesBooks = [
     ctaText: "Buy it now",
     ctaLink: "https://shorturl.at/anuOB",
   },
-  {
-    id: 1,
-    title: "GHARANTIA'S SHADOW \n Novella 1",
-    flatCover: "/images/novella-Sh-cover.jpg",
-    status: "get-it-free",
-    ctaText: "Get it free",
-    ctaLink: "#newsletter",
-  },
+  // {
+  //   id: 1,
+  //   title: "GHARANTIA'S SHADOW \n Novella 1",
+  //   flatCover: "/images/novella-Sh-cover.jpg",
+  //   status: "get-it-free",
+  //   ctaText: "Get it free",
+  //   ctaLink: "#newsletter",
+  // },
   {
     id: 2,
     title: "GHARANTIA'S GUARDIAN \n Book 1",

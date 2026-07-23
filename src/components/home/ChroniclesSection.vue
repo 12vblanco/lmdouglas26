@@ -149,7 +149,9 @@ const handleCtaClick = (link, status) => {
 /* Books Grid */
 .books-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  /* 4 across on desktop; the 1024px breakpoint drops to 2 (so it wraps 2-and-2,
+     never 3-and-1) and 768px goes single-column. */
+  grid-template-columns: repeat(4, 1fr);
   gap: 3rem;
   max-width: 1100px;
   margin: 0 auto;
@@ -356,18 +358,25 @@ const handleCtaClick = (link, status) => {
 }
 
 /* Responsive */
-@media (max-width: 1024px) {
+@media (max-width: 1170px) {
+  /* Reclaim the container gutters below the 4-across layout for more space. */
+  .container {
+    padding: 0;
+  }
+
+  /* 2-and-2 (never 3-and-1). */
   .books-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
   }
 
+  /* Scale the covers up (taller box) so the wide 2-up cards show less empty
+     white space. Sizing is driven by the container height only — with
+     object-fit: contain every cover renders at the same height regardless of
+     its individual aspect ratio, so they all stay the same size. */
   .book-cover-container {
-    min-height: 280px;
-  }
-
-  .book-cover-image {
-    max-width: 180px;
+    height: 380px;
+    max-width: 320px;
   }
 }
 
