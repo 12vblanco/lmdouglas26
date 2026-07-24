@@ -29,6 +29,7 @@ export default async (req, context) => {
       email,
       fields: { name },
       groups: MAILERLITE_GROUP_ID ? [MAILERLITE_GROUP_ID] : [],
+      status: "unconfirmed",
     };
 
     const mlResponse = await fetch(
