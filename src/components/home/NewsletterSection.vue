@@ -20,7 +20,7 @@
         <!-- Right Column: Newsletter Form -->
         <div class="newsletter-right">
           <div class="newsletter-content">
-            <h3 class="newsletter-title">The Endless War continues</h3>
+            <h2 class="newsletter-title">The Endless War continues</h2>
 
             <p class="newsletter-subtitle">
               Sign-up to my newsletter to receive exclusive updates, behind the

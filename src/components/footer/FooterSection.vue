@@ -48,10 +48,12 @@
               >
 
               <div class="social-links">
-                <FooterInstagram href="https://instagram.com/lmdouglas" />
-                <FacebookIcon href="https://facebook.com/lmdouglas" />
-                <ThreadsIcon href="https://threads.net/@lmdouglas" />
-                <FooterTikTok href="https://tiktok.com/@lmdouglas" />
+                <FooterInstagram href="https://www.instagram.com/l_m_douglas_author/" />
+                <FacebookIcon href="https://www.facebook.com/100083225184556" />
+                <ThreadsIcon href="https://www.threads.com/@l_m_douglas_author" />
+                <FooterTikTok href="https://www.tiktok.com/@lmdouglasauthor" />
+                <XIcon href="https://x.com/LMD_Author" />
+                <AmazonIcon href="https://www.amazon.com/stores/author/B0CM9TB5LH" />
               </div>
             </div>
           </div>
@@ -77,11 +79,13 @@
 </template>
 
 <script>
+import AmazonIcon from "../svgs/AmazonIcon.vue";
 import FooterCorner from "../svgs/CornerDesign.vue";
 import FacebookIcon from "../svgs/FacebookIcon.vue";
 import FooterTikTok from "../svgs/FooterTikTok.vue";
 import FooterInstagram from "../svgs/InstagramIcon.vue";
 import ThreadsIcon from "../svgs/ThreadsIcon.vue";
+import XIcon from "../svgs/XIcon.vue";
 
 export default {
   name: "SiteFooter",
@@ -91,6 +95,8 @@ export default {
     ThreadsIcon,
     FacebookIcon,
     FooterTikTok,
+    XIcon,
+    AmazonIcon,
   },
   computed: {
     currentYear() {
@@ -288,6 +294,7 @@ export default {
 
 .social-links {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 15px;
   align-items: center;

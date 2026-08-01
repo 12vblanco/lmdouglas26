@@ -63,6 +63,17 @@ const isTransitioning = ref(false);
 const loadedImages = ref(new Set());
 let autoplayInterval;
 
+let prerenderSignalled = false;
+
+// Tells the build-time prerenderer (renderAfterDocumentEvent) that the hero
+// content is on screen and it's safe to snapshot the HTML. Guarded so it only
+// ever fires once, whether triggered by images loading or the safety fallback.
+const signalPrerenderReady = () => {
+  if (prerenderSignalled) return;
+  prerenderSignalled = true;
+  document.dispatchEvent(new Event("app-prerendered"));
+};
+
 const handleImageLoaded = (slideId) => {
   loadedImages.value.add(slideId);
 
@@ -71,6 +82,7 @@ const handleImageLoaded = (slideId) => {
     setTimeout(() => {
       isInitialLoading.value = false;
       startAutoplay();
+      signalPrerenderReady();
     }, 500);
   }
 };
@@ -105,12 +117,18 @@ const stopAutoplay = () => {
   }
 };
 
+let prerenderFallback;
+
 onMounted(() => {
-  // Autoplay will start after images load
+  // Autoplay will start after images load.
+  // Safety net: signal the prerenderer even if an image never fires `load`,
+  // so a slow/failed asset can't hang the build snapshot.
+  prerenderFallback = setTimeout(signalPrerenderReady, 4000);
 });
 
 onUnmounted(() => {
   stopAutoplay();
+  clearTimeout(prerenderFallback);
 });
 </script>
 

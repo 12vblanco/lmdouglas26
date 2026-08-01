@@ -24,7 +24,7 @@
       <!-- Text Content Column -->
       <div class="hero-content">
         <!-- Main Title -->
-        <h1 class="hero-title">
+        <h2 class="hero-title">
           <span
             v-for="(line, index) in slide.titleLines"
             :key="index"
@@ -32,7 +32,7 @@
           >
             {{ line }}
           </span>
-        </h1>
+        </h2>
 
         <!-- Subtitle (small text above title) -->
         <p class="hero-subtitle">

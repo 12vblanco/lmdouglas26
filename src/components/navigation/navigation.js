@@ -30,18 +30,18 @@ export const socialLinks = [
     id: 'facebook',
     label: 'Facebook',
     icon: 'facebook',
-    url: 'https://facebook.com/lmdouglasauthor'
+    url: 'https://www.facebook.com/100083225184556'
   },
   {
     id: 'twitter',
     label: 'Twitter',
     icon: 'twitter',
-    url: 'https://twitter.com/lmdouglasauthor'
+    url: 'https://x.com/LMD_Author'
   },
   {
     id: 'instagram',
     label: 'Instagram',
     icon: 'instagram',
-    url: 'https://instagram.com/lmdouglasauthor'
+    url: 'https://www.instagram.com/l_m_douglas_author/'
   }
 ]

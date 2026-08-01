@@ -5,7 +5,7 @@
       <!-- Section Header -->
       <div class="section-header">
         <h2 class="section-title">
-          <h3 class="title-line">Chronicles Of The Endless War</h3>
+          <span class="title-line">Chronicles Of The Endless War</span>
         </h2>
       </div>
 

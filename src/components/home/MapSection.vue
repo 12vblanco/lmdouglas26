@@ -2,6 +2,16 @@
 <template>
   <section class="map-section" id="map">
     <div class="container">
+      <!-- Semantic heading + description for search engines and screen readers.
+           Visually hidden because the map artwork carries its own title. -->
+      <div class="map-header sr-only">
+        <h2 class="map-title">Explore the World of Gharantia</h2>
+        <p class="map-subtitle">
+          Journey across the realm of the Endless War — its duchies, cities,
+          gods, and the untamed lands beyond. Hover the map to uncover the lore
+          of each location.
+        </p>
+      </div>
       <div class="map-container" ref="mapContainer">
         <!-- Map Image -->
         <img
@@ -170,6 +180,35 @@ const getTooltipStyle = (position) => {
   position: relative;
   z-index: 10;
   overflow: visible;
+}
+
+.map-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 2.5rem;
+}
+
+.map-title {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--black);
+  margin-bottom: 0.75rem;
+}
+
+.map-subtitle {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--black);
+  opacity: 0.75;
+}
+
+@media (max-width: 768px) {
+  .map-title {
+    font-size: 1.75rem;
+  }
 }
 
 .container {
