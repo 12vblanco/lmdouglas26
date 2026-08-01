@@ -19,12 +19,6 @@ export default async (req, context) => {
 
     const MAILERLITE_API_KEY = process.env.MAILERLITE_API_KEY;
     const MAILERLITE_GROUP_ID = process.env.MAILERLITE_GROUP_ID;
-
-    // NB: intentionally no `status` field. Passing `status: "active"` force-
-    // activates the subscriber and bypasses MailerLite's account-level
-    // double opt-in, so the confirmation email is never sent. Omitting it lets
-    // MailerLite defer to your subscribe settings (double opt-in → the new
-    // subscriber lands as "unconfirmed" and gets the confirmation email).
     const payload = {
       email,
       fields: { name },
