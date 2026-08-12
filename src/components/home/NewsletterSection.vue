@@ -205,8 +205,20 @@ const handleSubmit = async () => {
       form.name = "";
       form.email = "";
       form.agreeToTerms = false;
+    } else if (mlRes.status === 429) {
+      submitMessage.value =
+        "Too many attempts. Please wait a minute and try again.";
+      isError.value = true;
+    } else if (mlRes.status === 403) {
+      submitMessage.value =
+        "Verification failed. Please reload the page and try again.";
+      isError.value = true;
     } else {
-      throw new Error("Submission failed");
+      const data = await mlRes.json().catch(() => ({}));
+      submitMessage.value = data.error
+        ? `Couldn't subscribe: ${data.error}.`
+        : "Something went wrong. Please try again.";
+      isError.value = true;
     }
   } catch (error) {
     console.error("Form submission error:", error);

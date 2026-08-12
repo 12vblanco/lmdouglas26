@@ -6,19 +6,46 @@ export default async (req, context) => {
 
   try {
     const text = await req.text();
+    // Body-size cap: legitimate payloads are tiny; anything large is abuse/DoS.
+    if (text.length > 10000) {
+      return new Response(JSON.stringify({ error: "Payload too large" }), {
+        status: 413,
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+
     const params = new URLSearchParams(text);
-    const email = params.get("email");
-    const name = params.get("name");
     const turnstileToken = params.get("turnstileToken");
 
-    // Basic email validation — cheap first gate before any external calls.
+    // Consent must be proven server-side, not just by the client checkbox.
+    if (params.get("agreeToTerms") !== "true") {
+      return new Response(JSON.stringify({ error: "Consent is required" }), {
+        status: 400,
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+
+    // Normalize + validate email. This is the address we email, so plus/dot aliases
+    // are preserved (not stripped); we only trim, lowercase, and bound the length.
+    const email = (params.get("email") || "").trim().toLowerCase();
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!email || !emailPattern.test(email)) {
+    if (!email || email.length > 254 || !emailPattern.test(email)) {
       return new Response(JSON.stringify({ error: "A valid email is required" }), {
         status: 400,
         headers: { "Content-Type": "application/json" },
       });
     }
+
+    // Sanitize name before it reaches MailerLite: it is rendered back in confirmation
+    // emails and the admin dashboard, so strip HTML/personalization brackets and control
+    // characters and cap the length to neutralize injection. Spaces/hyphens are kept so
+    // real names ("Jean-Luc", "Mary Ann") survive. Empty-after-strip means "no name".
+    const name =
+      (params.get("name") || "")
+        .replace(/[<>{}]/g, "")
+        .replace(/[\u0000-\u001f\u007f]/g, "")
+        .trim()
+        .slice(0, 100) || undefined;
 
     // Cloudflare Turnstile: verify the token server-side. Bots that POST directly to
     // this endpoint (bypassing the browser widget) have no valid token and are rejected
@@ -31,10 +58,9 @@ export default async (req, context) => {
       );
     }
 
-    const remoteIp =
-      req.headers.get("x-nf-client-connection-ip") ||
-      req.headers.get("x-forwarded-for") ||
-      "";
+    // Only Netlify's own client-IP header is trustworthy; X-Forwarded-For is spoofable
+    // and must never feed a security decision.
+    const remoteIp = req.headers.get("x-nf-client-connection-ip") || "";
     const verifyBody = new URLSearchParams({
       secret: TURNSTILE_SECRET_KEY || "",
       response: turnstileToken,
@@ -121,8 +147,9 @@ export default async (req, context) => {
     );
 
     if (!mlResponse.ok) {
-      const errorData = await mlResponse.json();
-      console.error("MailerLite error:", errorData);
+      // Tolerate a non-JSON error body so a bad response can't throw into a bare 500.
+      const errorData = await mlResponse.text().catch(() => "");
+      console.error("MailerLite error:", mlResponse.status, errorData);
       return new Response(
         JSON.stringify({ error: "MailerLite subscription failed" }),
         {
@@ -147,4 +174,12 @@ export default async (req, context) => {
 
 export const config = {
   path: "/api/newsletter-subscribe",
+  // Netlify native rate limiting: per-visitor quota. Signups are rare, so 5 requests
+  // per 60s per IP is generous for humans and hostile to abuse loops. (Function rate
+  // limits must live here, not in netlify.toml.)
+  rateLimit: {
+    windowSize: 60,
+    windowLimit: 5,
+    aggregateBy: ["ip", "domain"],
+  },
 };
