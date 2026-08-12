@@ -6,7 +6,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "puppeteer browsers install chrome && vite build",
     "preview": "vite preview",
     "og": "node scripts/build-og-image.mjs"
   },
