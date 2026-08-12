@@ -58,9 +58,13 @@ export default async (req, context) => {
       );
     }
 
-    // Only Netlify's own client-IP header is trustworthy; X-Forwarded-For is spoofable
-    // and must never feed a security decision.
-    const remoteIp = req.headers.get("x-nf-client-connection-ip") || "";
+    // The site is proxied through Cloudflare, so the real visitor IP is in
+    // CF-Connecting-IP; fall back to Netlify's own header for direct-origin requests.
+    // X-Forwarded-For is client-spoofable and must never feed a security decision.
+    const remoteIp =
+      req.headers.get("cf-connecting-ip") ||
+      req.headers.get("x-nf-client-connection-ip") ||
+      "";
     const verifyBody = new URLSearchParams({
       secret: TURNSTILE_SECRET_KEY || "",
       response: turnstileToken,
@@ -174,9 +178,10 @@ export default async (req, context) => {
 
 export const config = {
   path: "/api/newsletter-subscribe",
-  // Netlify native rate limiting: per-visitor quota. Signups are rare, so 5 requests
-  // per 60s per IP is generous for humans and hostile to abuse loops. (Function rate
-  // limits must live here, not in netlify.toml.)
+  // Netlify native rate limiting — a BACKSTOP for requests that hit the Netlify origin
+  // directly (bypassing Cloudflare), where Netlify sees the real client IP. Primary rate
+  // limiting is a Cloudflare edge rule on this path, since proxied traffic reaches Netlify
+  // as Cloudflare IPs. Signups are rare, so 5 / 60s is generous for humans.
   rateLimit: {
     windowSize: 60,
     windowLimit: 5,
