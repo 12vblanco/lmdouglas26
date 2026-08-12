@@ -47,7 +47,7 @@ A standard Vue + Vite SPA, with a few details worth calling out:
 
 - **Data-driven content.** Books and map lore live in [`src/components/home/heroData.js`](src/components/home/heroData.js) as plain objects; the carousel, the Chronicles grid, and the world-map points all render from that one file, so adding a release or a location is a one-object change.
 - **The responsive WebP system.** [`src/utils/webp.js`](src/utils/webp.js) detects WebP support once and caches it, then builds `srcset` strings from width-suffixed variants (`book1-flat-400.webp 400w, …`) and selects `-sm`/`-lg` backgrounds by viewport. If WebP isn't supported, it returns `undefined`/the original path, so the `<img>` falls back cleanly. The [`useViewportWidth`](src/composables/useViewportWidth.js) composable feeds the background selection.
-- **The newsletter pipeline.** The form is a [Netlify Form](src/components/home/NewsletterSection.vue) (honeypot-protected) that also `POST`s to [`netlify/functions/newsletter-subscribe.js`](netlify/functions/newsletter-subscribe.js), a serverless function that forwards the subscriber to the MailerLite API. It expects two environment variables in Netlify: `MAILERLITE_API_KEY` and `MAILERLITE_GROUP_ID`.
+- **The newsletter pipeline.** The [form](src/components/home/NewsletterSection.vue) `POST`s to [`netlify/functions/newsletter-subscribe.js`](netlify/functions/newsletter-subscribe.js), a serverless function that forwards the subscriber to the MailerLite API (double opt-in — subscribers are created `unconfirmed`). Spam is blocked with [Cloudflare Turnstile](https://developers.cloudflare.com/turnstile/): the widget on the form produces a token that the function verifies server-side (checking `success` and the `newsletter` action) before calling MailerLite, so bots that POST directly to the endpoint are rejected. The public site key is hardcoded in the component; only `TURNSTILE_SECRET_KEY` is a secret (plus the existing `MAILERLITE_API_KEY` and `MAILERLITE_GROUP_ID`), all set in Netlify. An optional `TURNSTILE_HOSTNAMES` allowlist can pin submissions to your domains. See [`.env.example`](.env.example).
 - **Build & deploy.** `npm run build` produces `/dist`; Netlify serves it and hosts the function (config in [`netlify.toml`](netlify.toml)).
 
 ### Project structure
@@ -97,7 +97,7 @@ npm run dev          # http://localhost:5173
 | `npm run build`   | Production build to `/dist` (deploy-ready) |
 | `npm run preview` | Serve the production build locally         |
 
-The newsletter function only runs on Netlify (via `netlify dev` or a deploy) and needs `MAILERLITE_API_KEY` and `MAILERLITE_GROUP_ID` set in the environment.
+The newsletter function only runs on Netlify (via `netlify dev` or a deploy) and needs `MAILERLITE_API_KEY`, `MAILERLITE_GROUP_ID`, and `TURNSTILE_SECRET_KEY` set in the environment. The build also needs `VITE_TURNSTILE_SITE_KEY` (the public Turnstile site key). Copy [`.env.example`](.env.example) to `.env` and fill in your keys for local work; set the same values in Netlify's dashboard for production.
 
 ## Notes & possible improvements
 

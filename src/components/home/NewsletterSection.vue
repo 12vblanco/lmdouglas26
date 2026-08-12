@@ -28,19 +28,13 @@
               updates!
             </p>
 
-            <!-- Netlify Form -->
+            <!-- Newsletter Form (MailerLite via Netlify Function) -->
             <form
               class="newsletter-form"
               name="newsletter"
               method="POST"
-              data-netlify="true"
-              data-netlify-honeypot="bot-field"
               @submit.prevent="handleSubmit"
             >
-              <!-- Netlify Form Hidden Fields -->
-              <input type="hidden" name="form-name" value="newsletter" />
-              <input type="hidden" name="bot-field" />
-
               <!-- Form Fields -->
               <div class="form-group">
                 <label for="name" class="form-label">Full Name</label>
@@ -83,6 +77,9 @@
                 </label>
               </div>
 
+              <!-- Cloudflare Turnstile: invisible bot verification -->
+              <div ref="turnstileEl" class="cf-turnstile"></div>
+
               <!-- Submit Button -->
               <button type="submit" class="submit-btn" :disabled="isSubmitting">
                 <span v-if="!isSubmitting">Join my newsletter →</span>
@@ -112,7 +109,7 @@
 </template>
 
 <script setup>
-import { reactive, ref } from "vue";
+import { onBeforeUnmount, onMounted, reactive, ref } from "vue";
 import davgaCover480 from "../../assets/images/Davga_HR-480.webp";
 import davgaCover800 from "../../assets/images/Davga_HR-800.webp";
 import davgaCoverJpg from "../../assets/images/Davga_HR.jpg";
@@ -134,9 +131,51 @@ const isSubmitting = ref(false);
 const submitMessage = ref("");
 const isError = ref(false);
 
+// Cloudflare Turnstile. The site key is public (safe to ship in the client); the
+// matching secret lives only in the Netlify function. `action` is echoed back by
+// siteverify and checked server-side so a token minted elsewhere can't be replayed here.
+const TURNSTILE_SITE_KEY = "0x4AAAAAAENoETuta9nzmjKI";
+const TURNSTILE_ACTION = "newsletter";
+const turnstileEl = ref(null);
+let widgetId = null;
+
+// Explicitly render the widget once the async Turnstile script is ready. In an SPA
+// the component can mount before challenges.cloudflare.com/turnstile finishes loading,
+// so poll briefly for window.turnstile instead of relying on implicit auto-render.
+const renderTurnstile = () => {
+  if (!turnstileEl.value) return;
+  if (window.turnstile) {
+    widgetId = window.turnstile.render(turnstileEl.value, {
+      sitekey: TURNSTILE_SITE_KEY,
+      action: TURNSTILE_ACTION,
+    });
+  } else {
+    setTimeout(renderTurnstile, 300);
+  }
+};
+
+onMounted(renderTurnstile);
+
+onBeforeUnmount(() => {
+  if (window.turnstile && widgetId !== null) {
+    window.turnstile.remove(widgetId);
+  }
+});
+
 const handleSubmit = async () => {
   if (!form.agreeToTerms) {
     submitMessage.value = "Please agree to the terms to continue.";
+    isError.value = true;
+    return;
+  }
+
+  // Require a Turnstile token before contacting the server.
+  const turnstileToken =
+    window.turnstile && widgetId !== null
+      ? window.turnstile.getResponse(widgetId)
+      : "";
+  if (!turnstileToken) {
+    submitMessage.value = "Please complete the verification and try again.";
     isError.value = true;
     return;
   }
@@ -146,30 +185,22 @@ const handleSubmit = async () => {
   isError.value = false;
 
   const formBody = new URLSearchParams({
-    "form-name": "newsletter",
     name: form.name,
     email: form.email,
     agreeToTerms: form.agreeToTerms,
+    turnstileToken,
   }).toString();
 
   try {
-    // Run Netlify form capture and MailerLite subscription in parallel
-    const [netlifyRes, mlRes] = await Promise.all([
-      fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: formBody,
-      }),
-      fetch("/api/newsletter-subscribe", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: formBody,
-      }),
-    ]);
+    const mlRes = await fetch("/api/newsletter-subscribe", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: formBody,
+    });
 
-    if (netlifyRes.ok && mlRes.ok) {
+    if (mlRes.ok) {
       submitMessage.value =
-        "Thank you! Look for a confirmation email in your inbox (or span folder)";
+        "Thank you! Look for a confirmation email in your inbox (or spam folder)";
       isError.value = false;
       form.name = "";
       form.email = "";
@@ -182,6 +213,10 @@ const handleSubmit = async () => {
     submitMessage.value = "Something went wrong. Please try again.";
     isError.value = true;
   } finally {
+    // Reset the widget so the single-use token can't be replayed on a retry.
+    if (window.turnstile && widgetId !== null) {
+      window.turnstile.reset(widgetId);
+    }
     isSubmitting.value = false;
   }
 };
