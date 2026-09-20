@@ -420,6 +420,13 @@ const checkAllLoaded = () => {
 }
 
 @media (max-width: 768px) {
+  /* Grow with the content rather than locking to the viewport — a fixed
+     height here clipped the description and CTA on shorter phones. */
+  .hero-slide {
+    height: auto;
+    min-height: calc(100vh - 30px);
+  }
+
   .alignment-left .hero-container,
   .alignment-right .hero-container {
     gap: 0rem;
@@ -443,16 +450,17 @@ const checkAllLoaded = () => {
     height: 50px;
     padding: 0.875rem 1.2rem;
     font-size: 1rem;
-    margin-bottom: 5rem;
+    /* Clears the absolutely-positioned carousel dots. */
+    margin-bottom: 3rem;
   }
 
   .book-cover-image {
-    max-width: 320px;
-    margin-top: 4rem;
+    max-width: 288px;
+    margin-top: 1.5rem;
   }
 
   .hero-container {
-    padding: 2rem 1rem 0 1rem;
+    padding: 1rem 1rem 0 1rem;
     min-height: fit-content;
   }
   .hero-book-badge {
@@ -463,7 +471,7 @@ const checkAllLoaded = () => {
 @media (max-width: 400px) {
   .hero-slide {
     position: relative;
-    height: fit-content;
+    height: auto;
   }
   .hero-title {
     font-size: clamp(2.5rem, 8vw, 4rem);
@@ -485,15 +493,22 @@ const checkAllLoaded = () => {
   }
 
   .book-cover-image {
-    max-width: 360px;
+    max-width: 288px;
     margin-top: 1rem;
   }
 
   .hero-container {
-    padding: 2rem 1rem 0 1rem;
-    margin-top: 30px;
+    padding: 1rem 1rem 0 1rem;
     min-height: fit-content;
-    margin-bottom: 5rem;
+  }
+}
+
+/* Short phones (iPhone SE and similar): trade cover size for vertical room
+   so the description and CTA still land above the fold. */
+@media (max-width: 768px) and (max-height: 700px) {
+  .book-cover-image {
+    max-width: 185px;
+    margin-top: 0.5rem;
   }
 }
 </style>
