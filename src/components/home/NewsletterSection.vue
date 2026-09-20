@@ -550,7 +550,8 @@ const handleSubmit = async () => {
   }
 
   .form-checkbox-group {
-    align-items: flex-start;
+    align-items: center;
+    justify-content: center;
   }
 
   /* Hide the cover image on mobile — content-only newsletter form */

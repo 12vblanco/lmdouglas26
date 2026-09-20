@@ -25,10 +25,7 @@
               sizes="(max-width: 768px) 80vw, 250px"
               :alt="book.title"
               class="book-cover-image"
-              :class="{
-                grayscale:
-                  book.status === 'coming-soon' || book.status === 'pre-order',
-              }"
+              :class="{ grayscale: book.status === 'coming-soon' }"
             />
 
             <!-- Status Badge -->

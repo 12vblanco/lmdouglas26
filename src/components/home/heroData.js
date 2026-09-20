@@ -8,6 +8,21 @@ import queenWebp from "../../assets/images/Queen-Velardis-and-Lord-Xuren.webp";
 // @/data/heroData.js
 export const heroSlides = [
   {
+    id: 4,
+    title: "GHARANTIA'S FATE",
+    titleLines: ["GHARANTIA'S", "FATE"],
+    subtitle: "Chronicles of the Endless War - Book 3",
+    description:
+      "With the city in ruins, the royal household is pulled in different directions; Criterious tending to the people, Melane looking north, and Queen Velardis consumed by a perilous obsession behind palace walls. As Xuren’s chilling message lingers, a darker conflict begins to unfold.",
+    ctaText: "Pre-order Now",
+    ctaLink: "https://amzn.eu/d/0hmAX8Eg",
+    bgImage: "/images/book3-bg.jpg",
+    overlayColor: "rgba(21, 21, 21, 0.2)",
+    bookCover: "/images/book3-cover.png",
+    textColor: "white",
+    alignment: "left",
+  },
+  {
     id: 3,
     title: "Davaga",
     titleLines: ["DAVGA"],
@@ -53,22 +68,6 @@ export const heroSlides = [
     textColor: "white",
     alignment: "left",
   },
-
-  {
-    id: 4,
-    title: "GHARANTIA'S FATE",
-    titleLines: ["GHARANTIA'S", "FATE"],
-    subtitle: "Chronicles of the Endless War - Book 3",
-    description:
-      "With the city in ruins, the royal household is pulled in different directions; Criterious tending to the people, Melane looking north, and Queen Velardis consumed by a perilous obsession behind palace walls. As Xuren’s chilling message lingers, a darker conflict begins to unfold.",
-    ctaText: "Coming Soon",
-    ctaLink: "#",
-    bgImage: "/images/book3-bg.jpg",
-    overlayColor: "rgba(21, 21, 21, 0.2)",
-    bookCover: "/images/book3-cover.png",
-    textColor: "white",
-    alignment: "left",
-  },
 ];
 
 export const chroniclesBooks = [
@@ -109,9 +108,9 @@ export const chroniclesBooks = [
     id: 4,
     title: "GHARANTIA'S FATE \n Book 3",
     flatCover: "/images/book3-flat.jpg",
-    status: "coming-soon",
-    ctaText: "Coming soon",
-    ctaLink: "#",
+    status: "pre-order",
+    ctaText: "Pre-order Now",
+    ctaLink: "https://amzn.eu/d/0hmAX8Eg",
   },
   //   {
   //   id: 4,
