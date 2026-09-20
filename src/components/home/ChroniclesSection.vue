@@ -280,11 +280,12 @@ const handleCtaClick = (link, status) => {
 /* Center the CTA button */
 .book-cta {
   display: inline-flex;
-  width: 178px;
+  width: 195px;
   height: 54px;
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
+  white-space: nowrap;
   font-family: var(--font-body);
   font-weight: 600;
   font-size: 1.125rem;
@@ -396,7 +397,7 @@ const handleCtaClick = (link, status) => {
     font-size: 0.875rem;
     padding: 0.625rem 1.25rem;
     min-height: 50px;
-    width: 150px;
+    width: 185px;
   }
 }
 

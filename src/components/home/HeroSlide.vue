@@ -235,11 +235,12 @@ const checkAllLoaded = () => {
 /* Center the CTA button */
 .btn-hero {
   display: inline-flex;
-  width: 172px;
+  width: 190px;
   height: 54px;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+  white-space: nowrap;
   font-family: var(--font-body);
   font-weight: 600;
   font-size: 1.125rem;
@@ -438,7 +439,7 @@ const checkAllLoaded = () => {
   }
 
   .btn-hero {
-    width: 180px;
+    width: 200px;
     height: 50px;
     padding: 0.875rem 1.2rem;
     font-size: 1rem;
@@ -455,7 +456,7 @@ const checkAllLoaded = () => {
     min-height: fit-content;
   }
   .hero-book-badge {
-    top: 2rem;
+    top: 3rem;
     right: 50px;
   }
 }
@@ -477,7 +478,7 @@ const checkAllLoaded = () => {
   }
 
   .btn-hero {
-    width: 180px;
+    width: 200px;
     height: 50px;
     padding: 0.875rem 1.2rem;
     font-size: 1rem;
