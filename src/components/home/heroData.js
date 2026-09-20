@@ -13,7 +13,7 @@ export const heroSlides = [
     titleLines: ["GHARANTIA'S", "FATE"],
     subtitle: "Chronicles of the Endless War - Book 3",
     description:
-      "The city's in ruins, the royal household, pulled in all directions; Criterious tending to the people, Melane looking north, and Queen Velardis consumed by an obsession in the palace. As Xuren’s chilling message lingers, a darker conflict begins to unfold.",
+      "The city's in ruins, the royal household, pulled in all directions; Criterious tending to the people, Melane looking north, and Queen Velardis consumed by an obsession in the palace. As Xuren’s message echoes, a darker conflict unfolds.",
     ctaText: "Pre-order Now",
     ctaLink: "https://amzn.eu/d/0hmAX8Eg",
     bgImage: "/images/book3-bg.jpg",
