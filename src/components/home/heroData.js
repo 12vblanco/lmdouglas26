@@ -13,7 +13,7 @@ export const heroSlides = [
     titleLines: ["GHARANTIA'S", "FATE"],
     subtitle: "Chronicles of the Endless War - Book 3",
     description:
-      "With the city in ruins, the royal household is pulled in different directions; Criterious tending to the people, Melane looking north, and Queen Velardis consumed by a perilous obsession behind palace walls. As Xuren’s chilling message lingers, a darker conflict begins to unfold.",
+      "The city's in ruins, the royal household, pulled in all directions; Criterious tending to the people, Melane looking north, and Queen Velardis consumed by an obsession in the palace. As Xuren’s chilling message lingers, a darker conflict begins to unfold.",
     ctaText: "Pre-order Now",
     ctaLink: "https://amzn.eu/d/0hmAX8Eg",
     bgImage: "/images/book3-bg.jpg",
@@ -21,6 +21,7 @@ export const heroSlides = [
     bookCover: "/images/book3-cover.png",
     textColor: "white",
     alignment: "left",
+    badge: "New Book",
   },
   {
     id: 3,
@@ -36,7 +37,6 @@ export const heroSlides = [
     bookCover: "/images/book4-cover.png",
     textColor: "white",
     alignment: "left",
-    badge: "New Book",
   },
   {
     id: 1,
@@ -75,7 +75,7 @@ export const chroniclesBooks = [
     id: 5,
     title: "DAVGA \n An Endless War novella",
     flatCover: "/images/book4-flat.jpg",
-    status: "new-release",
+    status: "available",
     ctaText: "Buy it now",
     ctaLink: "https://shorturl.at/anuOB",
   },
